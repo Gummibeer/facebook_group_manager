@@ -1,0 +1,14 @@
+.idea
+*.iml
+*.lock
+/node_modules
+/public/storage
+/public/hot
+/storage/*.key
+/vendor
+/.idea
+Homestead.json
+Homestead.yaml
+.env
+/_ide_helper.php
+/.phpstorm.meta.php
