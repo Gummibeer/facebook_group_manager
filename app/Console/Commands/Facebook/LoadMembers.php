@@ -22,6 +22,7 @@ class LoadMembers extends FacebookCommand
         do {
             $this->comment('save graph edge data');
             $members = $members->merge($edge->asArray());
+            $bar = $this->output->createProgressBar($edge->count());
             foreach($edge->asArray() as $member) {
                 $exists = Member::byId($member['id'])->exists();
                 if(!$exists) {
@@ -38,7 +39,10 @@ class LoadMembers extends FacebookCommand
                         'gender' => $gender,
                     ]);
                 }
+                $bar->advance();
             }
+            $bar->finish();
+            $this->line('');
             $edge = $fb->next($edge);
         } while(!is_null($edge));
         $this->info('scraped '.$members->count().' members data');

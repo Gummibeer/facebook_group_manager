@@ -11,6 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['namespace' => 'Auth'], function() {
+    Route::get('login', 'LoginController@getLogin')
+        ->name('auth.login');
+    Route::get('logout', 'LoginController@getLogout')
+        ->name('auth.logout');
+});
+
+Route::group(['namespace' => 'App'], function() {
+    Route::get('dashboard', 'DashboardController@getIndex')
+        ->name('app.dashboard.index');
+
+    Route::group(['prefix' => 'member'], function() {
+        Route::get('/', 'MemberController@getIndex')
+            ->name('app.member.index');
+        Route::get('datatable', 'MemberController@getDatatable')
+            ->name('app.member.datatable');
+    });
 });

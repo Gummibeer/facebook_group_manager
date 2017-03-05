@@ -34,6 +34,6 @@ class Member extends Model
     }
 
     public function scopeByActive(Builder $query, $active = true) {
-        return $query->where('active', $active);
+        return $query->where('is_active', (int)$active);
     }
 }
