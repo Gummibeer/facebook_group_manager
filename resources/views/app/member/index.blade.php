@@ -8,7 +8,7 @@
         <table class="table table-striped" id="members-table">
             <thead>
             <tr>
-                <th></th>
+                <th width="96px"></th>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Geschlecht</th>

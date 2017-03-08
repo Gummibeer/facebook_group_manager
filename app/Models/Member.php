@@ -19,6 +19,16 @@ class Member extends Model
         'is_active',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'facebook_id', 'id');
+    }
+
+    public function getAvatarAttribute()
+    {
+        return 'https://graph.facebook.com/'.$this->id.'/picture?type=square';
+    }
+
     public function inactivate()
     {
         $this->update([
@@ -35,5 +45,15 @@ class Member extends Model
 
     public function scopeByActive(Builder $query, $active = true) {
         return $query->where('is_active', (int)$active);
+    }
+
+    public function scopeByAdmin(Builder $query, $admin = true)
+    {
+        return $query->where('is_administrator', (int)$admin);
+    }
+
+    public function scopeByGender(Builder $query, $gender)
+    {
+        return $query->where('gender', $gender);
     }
 }

@@ -2,40 +2,27 @@
 
 namespace App\Console;
 
-use App\Console\Commands\Facebook\LoadMembers;
-use App\Console\Commands\Python\Gender;
+use App\Console\Commands\MemberGender;
+use App\Console\Commands\MemberLoad;
+use App\Console\Commands\TokenRefresh;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
-    /**
-     * The Artisan commands provided by your application.
-     *
-     * @var array
-     */
     protected $commands = [
-        LoadMembers::class,
-        Gender::class,
+        MemberGender::class,
+        MemberLoad::class,
+        TokenRefresh::class,
     ];
 
-    /**
-     * Define the application's command schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-     * @return void
-     */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+         $schedule->command('member:load')->hourly();
+         $schedule->command('member:gender')->hourly();
+         $schedule->command('token:refresh')->daily();
     }
 
-    /**
-     * Register the Closure based commands for the application.
-     *
-     * @return void
-     */
     protected function commands()
     {
         require base_path('routes/console.php');

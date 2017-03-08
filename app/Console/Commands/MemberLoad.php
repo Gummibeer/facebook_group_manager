@@ -1,21 +1,30 @@
 <?php
 
-namespace App\Console\Commands\Facebook;
+namespace App\Console\Commands;
 
-use App\Console\Commands\FacebookCommand;
+use App\Libs\Facebook;
 use App\Models\Member;
+use Illuminate\Console\Command;
 
-class LoadMembers extends FacebookCommand
+class MemberLoad extends Command
 {
-    protected $signature = 'facebook:member:load';
-    protected $description = 'Command description';
+    protected $signature = 'member:load';
+    protected $description = 'Loads all members from facebook.';
+
+    protected $facebook;
+
+    public function __construct(Facebook $facebook)
+    {
+        $this->facebook = $facebook;
+        parent::__construct();
+    }
 
     public function handle()
     {
-        $groupId = 1561917967449058;
+        $fb = $this->facebook->getClient();
+        $groupId = config('services.facebook.group_id');
 
         $this->info('load members for group #'.$groupId);
-        $fb = $this->getFacebook();
         $response = $fb->get($groupId.'/members?fields=id,first_name,name,picture{is_silhouette},administrator&limit=1000');
         $edge = $response->getGraphEdge();
         $members = collect([]);
@@ -26,17 +35,13 @@ class LoadMembers extends FacebookCommand
             foreach($edge->asArray() as $member) {
                 $exists = Member::byId($member['id'])->exists();
                 if(!$exists) {
-                    \Artisan::call('python:gender', [
-                        'name' => $member['first_name'],
-                    ]);
-                    $gender = trim(\Artisan::output()) * 1;
                     Member::create([
                         'id' => $member['id'],
                         'first_name' => $member['first_name'],
                         'full_name' => $member['name'],
                         'is_silhouette' => $member['picture']['is_silhouette'],
                         'is_administrator' => $member['administrator'],
-                        'gender' => $gender,
+                        'gender' => 0,
                     ]);
                 }
                 $bar->advance();

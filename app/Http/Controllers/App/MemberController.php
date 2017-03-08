@@ -3,10 +3,18 @@
 namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
+use App\Libs\Gender;
 use App\Models\Member;
 
 class MemberController extends Controller
 {
+    protected $gender;
+
+    public function __construct(Gender $gender)
+    {
+        $this->gender = $gender;
+    }
+
     public function getIndex()
     {
         return view('app.member.index');
@@ -16,7 +24,7 @@ class MemberController extends Controller
     {
         return \Datatables::of(Member::byActive()->get())
             ->addColumn('avatar', function(Member $member) {
-                return '<img src="https://graph.facebook.com/'.$member->id.'/picture?type=square" class="img-responsive">';
+                return '<img src="'.$member->avatar.'" class="img-responsive">';
             })
             ->addColumn('actions', function(Member $member) {
                 return '<div class="btn-group">'.
@@ -28,14 +36,12 @@ class MemberController extends Controller
             ->editColumn('gender', function(Member $member) {
                 switch($member->gender) {
                     default:
-                    case 0:
-                        return '<i class="fa fa-genderless"></i> unbekannt';
-                    case 1:
-                        return '<i class="fa fa-transgender"></i> androgyn';
-                    case 2:
-                        return '<i class="fa fa-mars"></i> männlich';
-                    case 3:
-                        return '<i class="fa fa-venus"></i> weiblich';
+                    case Gender::UNKNOWN:
+                        return '<i class="fa '.$this->gender->getIcon(Gender::UNKNOWN).'"></i>';
+                    case Gender::FEMALE:
+                        return '<i class="fa '.$this->gender->getIcon(Gender::FEMALE).'"></i>';
+                    case Gender::MALE:
+                        return '<i class="fa '.$this->gender->getIcon(Gender::MALE).'"></i>';
                 }
             })
             ->editColumn('is_silhouette', function(Member $member) {
