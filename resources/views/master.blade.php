@@ -18,15 +18,13 @@
 </head>
 <body class="@yield('body-class')">
     @yield('layout')
-    <script src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery-migrate-1.2.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/modernizr.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.sparkline.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.cookies.js') }}"></script>
-    <script src="{{ asset('js/toggles.min.js') }}"></script>
-    <script src="{{ asset('js/retina.min.js') }}"></script>
     <script src="{{ asset('js/jquery.datatables.min.js') }}"></script>
+    <script src="{{ asset('js/chart.min.js') }}"></script>
+    <script src="{{ asset('js/masonry.pkgd.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
     @stack('scripts')
 </body>

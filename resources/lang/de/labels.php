@@ -36,4 +36,7 @@ return [
         'profile' => 'Profil',
     ],
     'image_search' => 'Bildsuche',
+
+    'members_by_gender' => 'Mitglieder nach Geschlecht',
+    'members_without_avatar' => 'Mitglieder ohne Profilbild',
 ];

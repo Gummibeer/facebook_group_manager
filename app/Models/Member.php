@@ -61,4 +61,9 @@ class Member extends Model
     {
         return $query->where('gender', $gender);
     }
+
+    public function scopeByIsSilhouette(Builder $query, $is = true)
+    {
+        return $query->where('is_silhouette', (int)$is);
+    }
 }
