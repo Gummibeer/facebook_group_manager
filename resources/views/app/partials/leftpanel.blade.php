@@ -10,18 +10,18 @@
                 <a href="{{ route('app.dashboard.index') }}">
                     <span class="pull-right badge badge-success">2</span>
                     <i class="fa fa-dashboard"></i>
-                    <span>Dashboard</span>
+                    <span>{{ trans('labels.dashboard') }}</span>
                 </a>
             </li>
             <li class="nav-parent">
                 <a href="">
                     <i class="fa fa-user"></i>
-                    <span>Mitglieder</span>
+                    <span>{{ trans('labels.members') }}</span>
                 </a>
                 <ul class="children">
                     <li>
                         <a href="{{ route('app.member.index') }}">
-                            Übersicht
+                            {{ trans('labels.index') }}
                         </a>
                     </li>
                 </ul>

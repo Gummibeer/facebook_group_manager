@@ -29,6 +29,11 @@ class Member extends Model
         return 'https://graph.facebook.com/'.$this->id.'/picture?type=square';
     }
 
+    public function getPictureAttribute()
+    {
+        return 'https://graph.facebook.com/'.$this->id.'/picture?type=large';
+    }
+
     public function inactivate()
     {
         $this->update([
