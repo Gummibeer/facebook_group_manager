@@ -73,7 +73,7 @@ class LoginController extends Controller
             ]);
         }
 
-        if(!$user->hasMember()) {
+        if(!$user->hasMember() && !$user->is_admin) {
             return redirect()->route('auth.login');
         }
 
