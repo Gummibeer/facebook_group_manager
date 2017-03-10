@@ -1,14 +1,27 @@
 <?php
 return [
+    'login' => 'anmelden',
+    'logout' => 'abmelden',
+
     'dashboard' => 'Dashboard',
     'members' => 'Mitglieder',
+    'administration' => 'Administration',
+    'users' => 'Benutzer',
+    'user' => 'Benutzer',
+
     'index' => 'Übersicht',
+    'edit' => 'bearbeiten',
+
+    'close' => 'schließen',
+    'save' => 'speichern',
 
     'id' => 'ID',
     'full_name' => 'Name',
     'gender' => 'Geschlecht',
     'is_silhouette' => 'Umriss',
-    'is_administrator' => 'Admin',
+    'is_admin' => 'Admin',
+    'email' => 'E-Mail',
+    'facebook_id' => 'Facebook-ID',
 
     'yes' => 'ja',
     'no' => 'nein',

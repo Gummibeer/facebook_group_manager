@@ -73,6 +73,10 @@ class LoginController extends Controller
             ]);
         }
 
+        if(!$user->hasMember()) {
+            return redirect()->route('auth.login');
+        }
+
         \Auth::login($user);
         return redirect()->route('app.dashboard.index');
     }

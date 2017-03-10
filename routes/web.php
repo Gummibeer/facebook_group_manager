@@ -19,10 +19,21 @@ Route::group(['namespace' => 'App', 'middleware' => 'auth'], function() {
     Route::get('dashboard', 'DashboardController@getIndex')
         ->name('app.dashboard.index');
 
-    Route::group(['prefix' => 'member'], function() {
+    Route::group(['prefix' => 'member', 'middleware' => 'can:manage-member'], function() {
         Route::get('/', 'MemberController@getIndex')
             ->name('app.member.index');
         Route::get('datatable', 'MemberController@getDatatable')
             ->name('app.member.datatable');
+    });
+
+    Route::group(['prefix' => 'user', 'middleware' => 'can:manage-user'], function() {
+        Route::get('/', 'UserController@getIndex')
+            ->name('app.user.index');
+        Route::get('datatable', 'UserController@getDatatable')
+            ->name('app.user.datatable');
+        Route::get('edit/{user}', 'UserController@getEdit')
+            ->name('app.user.edit');
+        Route::post('update/{user}', 'UserController@postUpdate')
+            ->name('app.user.update');
     });
 });

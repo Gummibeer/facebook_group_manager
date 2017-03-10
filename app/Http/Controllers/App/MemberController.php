@@ -49,7 +49,7 @@ class MemberController extends Controller
 
                 $out = '<div class="btn-group pull-right">';
                 foreach($actions as $action) {
-                    $out .= '<a href="'.$action['url'].'" target="_blank" class="btn btn-default-alt btn-xs" title="'.$action['title'].'"><i class="fa '.$action['icon'].'"></i></a>';
+                    $out .= '<a href="'.$action['url'].'" target="'.array_get($action, 'target', '_blank').'" class="btn btn-'.array_get($action, 'type', 'default').'-alt btn-xs" title="'.$action['title'].'"><i class="fa '.$action['icon'].'"></i></a>';
                 }
                 $out .= '</div>';
                 return $out;

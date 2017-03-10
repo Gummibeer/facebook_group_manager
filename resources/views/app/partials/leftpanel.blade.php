@@ -8,19 +8,34 @@
         <ul class="nav nav-pills nav-stacked nav-bracket">
             <li>
                 <a href="{{ route('app.dashboard.index') }}">
-                    <span class="pull-right badge badge-success">2</span>
                     <i class="fa fa-dashboard"></i>
                     <span>{{ trans('labels.dashboard') }}</span>
                 </a>
             </li>
             <li class="nav-parent">
                 <a href="">
-                    <i class="fa fa-user"></i>
+                    <i class="fa fa-users"></i>
                     <span>{{ trans('labels.members') }}</span>
                 </a>
                 <ul class="children">
                     <li>
                         <a href="{{ route('app.member.index') }}">
+                            {{ trans('labels.index') }}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <h5 class="sidebartitle">{{ trans('labels.administration') }}</h5>
+        <ul class="nav nav-pills nav-stacked nav-bracket">
+            <li class="nav-parent">
+                <a href="">
+                    <i class="fa fa-users"></i>
+                    <span>{{ trans('labels.users') }}</span>
+                </a>
+                <ul class="children">
+                    <li>
+                        <a href="{{ route('app.user.index') }}">
                             {{ trans('labels.index') }}
                         </a>
                     </li>

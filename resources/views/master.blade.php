@@ -9,6 +9,7 @@
     <title>Bracket Responsive Bootstrap3 Admin</title>
     <link href="{{ asset('css/style.default.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!--[if lt IE 9]>
         <script src="{{ asset('js/html5shiv.js') }}"></script>
