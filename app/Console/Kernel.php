@@ -18,8 +18,8 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule)
     {
-         $schedule->command('member:load')->hourly();
-         $schedule->command('member:gender')->hourly();
+         $schedule->command('member:load')->hourly()->withoutOverlapping();
+         $schedule->command('member:gender')->hourly()->withoutOverlapping();
          $schedule->command('token:refresh')->daily();
     }
 
