@@ -34,7 +34,15 @@ class MemberLoad extends Command
             $bar = $this->output->createProgressBar($edge->count());
             foreach($edge->asArray() as $member) {
                 $exists = Member::byId($member['id'])->exists();
-                if(!$exists) {
+                if($exists) {
+                    $member = Member::byId($member['id'])->first();
+                    $member->update([
+                        'first_name' => $member['first_name'],
+                        'full_name' => $member['name'],
+                        'is_silhouette' => $member['picture']['is_silhouette'],
+                        'is_administrator' => $member['administrator'],
+                    ]);
+                } else {
                     Member::create([
                         'id' => $member['id'],
                         'first_name' => $member['first_name'],
