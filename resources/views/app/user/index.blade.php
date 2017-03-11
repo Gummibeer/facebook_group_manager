@@ -37,17 +37,19 @@
                 </div>
             </div>
         </div>
-        <table class="table table-striped" id="members-table">
-            <thead>
-            <tr>
-                <th>{{ trans('labels.facebook_id') }}</th>
-                <th>{{ trans('labels.full_name') }}</th>
-                <th>{{ trans('labels.email') }}</th>
-                <th>{{ trans('labels.is_admin') }}</th>
-                <th></th>
-            </tr>
-            </thead>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-striped" id="members-table">
+                <thead>
+                <tr>
+                    <th>{{ trans('labels.facebook_id') }}</th>
+                    <th>{{ trans('labels.full_name') }}</th>
+                    <th>{{ trans('labels.email') }}</th>
+                    <th>{{ trans('labels.is_admin') }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+            </table>
+        </div>
     </div>
 @endsection
 

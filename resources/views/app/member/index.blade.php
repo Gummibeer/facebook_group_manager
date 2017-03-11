@@ -52,19 +52,21 @@
                 </div>
             </div>
         </div>
-        <table class="table table-striped" id="members-table">
-            <thead>
-            <tr>
-                <th width="96px"></th>
-                <th>{{ trans('labels.id') }}</th>
-                <th>{{ trans('labels.full_name') }}</th>
-                <th>{{ trans('labels.gender') }}</th>
-                <th>{{ trans('labels.is_silhouette') }}</th>
-                <th>{{ trans('labels.is_administrator') }}</th>
-                <th></th>
-            </tr>
-            </thead>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-striped" id="members-table">
+                <thead>
+                <tr>
+                    <th width="96px"></th>
+                    <th>{{ trans('labels.id') }}</th>
+                    <th>{{ trans('labels.full_name') }}</th>
+                    <th>{{ trans('labels.gender') }}</th>
+                    <th>{{ trans('labels.is_silhouette') }}</th>
+                    <th>{{ trans('labels.is_admin') }}</th>
+                    <th></th>
+                </tr>
+                </thead>
+            </table>
+        </div>
     </div>
 @endsection
 
