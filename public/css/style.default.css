@@ -4541,18 +4541,6 @@ div.error label.error:before {
         width: 100%;
     }
 
-    .headermenu li:first-child .dropdown-menu {
-        margin-right: -130px;
-    }
-
-    .headermenu li:nth-child(2) .dropdown-menu {
-        margin-right: -85px;
-    }
-
-    .headermenu li:nth-child(3) .dropdown-menu {
-        margin-right: -37px;
-    }
-
     .nav-tabs.nav-justified.nav-profile > li {
         float: none;
         display: block;
