@@ -62,22 +62,20 @@
                 </div>
             </div>
         </div>
-        <div class="table-responsive">
-            <table class="table table-striped table-hover" id="members-table">
-                <thead>
-                <tr>
-                    <th width="96px"></th>
-                    <th>{{ trans('labels.id') }}</th>
-                    <th>{{ trans('labels.full_name') }}</th>
-                    <th>{{ trans('labels.gender') }}</th>
-                    <th>{{ trans('labels.is_silhouette') }}</th>
-                    <th>{{ trans('labels.is_admin') }}</th>
-                    <th>{{ trans('labels.is_approved') }}</th>
-                    <th></th>
-                </tr>
-                </thead>
-            </table>
-        </div>
+        <table class="table table-striped table-hover" id="members-table">
+            <thead>
+            <tr>
+                <th width="96px"></th>
+                <th>{{ trans('labels.id') }}</th>
+                <th>{{ trans('labels.full_name') }}</th>
+                <th>{{ trans('labels.gender') }}</th>
+                <th>{{ trans('labels.is_silhouette') }}</th>
+                <th>{{ trans('labels.is_admin') }}</th>
+                <th>{{ trans('labels.is_approved') }}</th>
+                <th></th>
+            </tr>
+            </thead>
+        </table>
     </div>
 @endsection
 
@@ -89,7 +87,7 @@
             serverSide: true,
             pageLength: 50,
             ajax: '{!! route('app.member.datatable') !!}',
-            dom: 'rt<"panel-footer"<"row"<"col-md-6"i><"col-md-6"p>>>',
+            dom: 'r<"table-responsive"t><"panel-footer"<"row"<"col-md-6"i><"col-md-6"p>>>',
             columns: [
                 { data: 'avatar', name: 'avatar', orderable: false, searchable: false },
                 { data: 'id', name: 'id' },

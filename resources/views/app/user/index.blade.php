@@ -37,19 +37,17 @@
                 </div>
             </div>
         </div>
-        <div class="table-responsive">
-            <table class="table table-striped table-hover" id="members-table">
-                <thead>
-                <tr>
-                    <th>{{ trans('labels.facebook_id') }}</th>
-                    <th>{{ trans('labels.full_name') }}</th>
-                    <th>{{ trans('labels.email') }}</th>
-                    <th>{{ trans('labels.is_admin') }}</th>
-                    <th></th>
-                </tr>
-                </thead>
-            </table>
-        </div>
+        <table class="table table-striped table-hover" id="members-table">
+            <thead>
+            <tr>
+                <th>{{ trans('labels.facebook_id') }}</th>
+                <th>{{ trans('labels.full_name') }}</th>
+                <th>{{ trans('labels.email') }}</th>
+                <th>{{ trans('labels.is_admin') }}</th>
+                <th></th>
+            </tr>
+            </thead>
+        </table>
     </div>
 @endsection
 
@@ -61,7 +59,7 @@
             serverSide: true,
             pageLength: 50,
             ajax: '{!! route('app.user.datatable') !!}',
-            dom: 'rt<"panel-footer"<"row"<"col-md-6"i><"col-md-6"p>>>',
+            dom: 'r<"table-responsive"t><"panel-footer"<"row"<"col-md-6"i><"col-md-6"p>>>',
             columns: [
                 { data: 'facebook_id', name: 'facebook_id' },
                 { data: 'name', name: 'name' },
