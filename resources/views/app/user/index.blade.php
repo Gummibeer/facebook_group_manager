@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="table-responsive">
-            <table class="table table-striped" id="members-table">
+            <table class="table table-striped table-hover" id="members-table">
                 <thead>
                 <tr>
                     <th>{{ trans('labels.facebook_id') }}</th>

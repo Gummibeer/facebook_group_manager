@@ -12,9 +12,10 @@ class DashboardController extends Controller
     {
         $gender = app(Gender::class);
 
+        $members = Member::byActive()->get();
         $membersByGender = [];
         foreach($gender->getLabels() as $key => $name) {
-            $membersByGender[trans('labels.'.$name)] = Member::byGender($key)->count();
+            $membersByGender[trans('labels.'.$name)] = $members->where('gender', $key)->count();
         }
 
         return view('app.dashboard.index')->with([

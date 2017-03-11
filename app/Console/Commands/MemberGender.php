@@ -8,7 +8,7 @@ use Illuminate\Console\Command;
 
 class MemberGender extends Command
 {
-    protected $signature = 'member:gender';
+    protected $signature = 'member:gender:name';
     protected $description = 'Sets gender by name.';
 
     protected $gender;
@@ -21,12 +21,12 @@ class MemberGender extends Command
 
     public function handle()
     {
-        $members = Member::byGender(Gender::UNKNOWN)->get();
+        $members = Member::byGenderName(Gender::UNKNOWN)->get();
         $this->info('search gender for '.$members->count().' members');
         $bar = $this->output->createProgressBar($members->count());
         foreach($members as $member) {
             $member->update([
-                'gender' => $this->gender->getByName($member->first_name),
+                'gender_by_name' => $this->gender->getByName($member->first_name),
             ]);
             $bar->advance();
         }

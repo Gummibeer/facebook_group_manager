@@ -16,6 +16,7 @@ class Member extends Model
         'is_silhouette',
         'is_administrator',
         'gender',
+        'gender_by_name',
         'is_active',
     ];
 
@@ -34,10 +35,18 @@ class Member extends Model
         return 'https://graph.facebook.com/'.$this->id.'/picture?type=large';
     }
 
+    public function getGenderAttribute($value)
+    {
+        if($value == 0) {
+            return $this->gender_by_name;
+        }
+        return $value;
+    }
+
     public function inactivate()
     {
         $this->update([
-            'active' => false,
+            'is_active' => 0,
         ]);
     }
 
@@ -48,21 +57,21 @@ class Member extends Model
         return $query->where('id', $id);
     }
 
-    public function scopeByActive(Builder $query, $active = true) {
+    public function scopeByActive(Builder $query, $active = 1) {
         return $query->where('is_active', (int)$active);
     }
 
-    public function scopeByAdmin(Builder $query, $admin = true)
+    public function scopeByAdmin(Builder $query, $admin = 1)
     {
         return $query->where('is_administrator', (int)$admin);
     }
 
-    public function scopeByGender(Builder $query, $gender)
+    public function scopeByGenderName(Builder $query, $gender)
     {
-        return $query->where('gender', $gender);
+        return $query->where('gender_by_name', $gender);
     }
 
-    public function scopeByIsSilhouette(Builder $query, $is = true)
+    public function scopeByIsSilhouette(Builder $query, $is = 1)
     {
         return $query->where('is_silhouette', (int)$is);
     }
