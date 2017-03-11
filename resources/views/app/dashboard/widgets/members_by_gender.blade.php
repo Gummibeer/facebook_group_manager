@@ -6,3 +6,34 @@
         <canvas id="members-by-gender-chart"></canvas>
     </div>
 </div>
+
+@push('scripts')
+<script type="text/javascript">
+    $(function() {
+        new Chart($('#members-by-gender-chart'), {
+            type: 'pie',
+            data: {
+                labels: {!! json_encode(array_keys($membersByGender)) !!},
+                datasets: [
+                    {
+                        data: {!! json_encode(array_values($membersByGender)) !!},
+                        backgroundColor: [
+                            "#FFCE56",
+                            "#FF6384",
+                            "#36A2EB"
+                        ],
+                        hoverBackgroundColor: [
+                            "#FFCE56",
+                            "#FF6384",
+                            "#36A2EB"
+                        ]
+                    }]
+            }
+        });
+
+        $('.grid').masonry({
+            itemSelector: '.grid-item'
+        });
+    });
+</script>
+@endpush
