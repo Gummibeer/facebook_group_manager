@@ -12,6 +12,7 @@
                     <span>{{ trans('labels.dashboard') }}</span>
                 </a>
             </li>
+            @can('manage-member')
             <li class="nav-parent">
                 <a href="">
                     <i class="fa fa-users"></i>
@@ -25,7 +26,9 @@
                     </li>
                 </ul>
             </li>
+            @endcan
         </ul>
+        @can('manage-user')
         <h5 class="sidebartitle">{{ trans('labels.administration') }}</h5>
         <ul class="nav nav-pills nav-stacked nav-bracket">
             <li class="nav-parent">
@@ -42,5 +45,6 @@
                 </ul>
             </li>
         </ul>
+        @endcan
     </div>
 </div>
