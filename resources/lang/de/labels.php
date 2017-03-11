@@ -5,6 +5,7 @@ return [
 
     'dashboard' => 'Dashboard',
     'members' => 'Mitglieder',
+    'member' => 'Mitglied',
     'administration' => 'Administration',
     'users' => 'Benutzer',
     'user' => 'Benutzer',
@@ -18,10 +19,12 @@ return [
     'id' => 'ID',
     'full_name' => 'Name',
     'gender' => 'Geschlecht',
+    'gender_by_name' => 'Geschlecht nach Name',
     'is_silhouette' => 'Silhouette',
     'is_admin' => 'Admin',
     'email' => 'E-Mail',
     'facebook_id' => 'Facebook-ID',
+    'is_approved' => 'Überprüft',
 
     'yes' => 'ja',
     'no' => 'nein',
@@ -38,5 +41,13 @@ return [
     'image_search' => 'Bildsuche',
 
     'members_by_gender' => 'Mitglieder nach Geschlecht',
+    'members_by_approved' => 'Mitglieder nach Überprüfung',
+
     'members_without_avatar' => 'Mitglieder ohne Profilbild',
+    'members_approved' => 'überprüfte Mitglieder',
+
+    'approved' => [
+        '0' => 'nein',
+        '1' => 'ja',
+    ],
 ];

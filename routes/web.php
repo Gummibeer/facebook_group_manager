@@ -24,6 +24,10 @@ Route::group(['namespace' => 'App', 'middleware' => 'auth'], function() {
             ->name('app.member.index');
         Route::get('datatable', 'MemberController@getDatatable')
             ->name('app.member.datatable');
+        Route::get('edit/{member}', 'MemberController@getEdit')
+            ->name('app.member.edit');
+        Route::post('update/{member}', 'MemberController@postUpdate')
+            ->name('app.member.update');
     });
 
     Route::group(['prefix' => 'user', 'middleware' => 'can:manage-user'], function() {

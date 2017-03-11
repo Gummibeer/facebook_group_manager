@@ -9,19 +9,19 @@
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <strong>{{ trans('labels.full_name') }}</strong>
                         <p>{{ $user->name }}</p>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <strong>{{ trans('labels.email') }}</strong>
                         <p>{{ $user->email }}</p>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <strong>{{ trans('labels.facebook_id') }}</strong>
                         <p>{{ $user->facebook_id }}</p>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-1">
                         <label for="select_is_admin">{{ trans('labels.is_admin') }}</label>
                         <select class="form-control" id="select_is_admin" name="is_admin">
                             <option value="1" @if($user->is_admin) selected @endif>{{ trans('labels.yes') }}</option>

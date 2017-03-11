@@ -5,6 +5,7 @@ namespace App\Http\Controllers\App;
 use App\Http\Controllers\Controller;
 use App\Libs\Gender;
 use App\Models\Member;
+use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
@@ -44,6 +45,12 @@ class MemberController extends Controller
                         'title' => trans('labels.image_search'),
                         'icon' => 'fa-google',
                         'url' => 'http://www.google.com/searchbyimage?hl=en&image_url='.$member->picture,
+                    ], [
+                        'title' => trans('labels.edit'),
+                        'icon' => 'fa-pencil',
+                        'url' => route('app.member.edit', $member->id),
+                        'target' => '_top',
+                        'type' => 'warning',
                     ],
                 ];
 
@@ -83,7 +90,33 @@ class MemberController extends Controller
                         return '<i class="fa fa-check"></i> '.trans('labels.yes');
                 }
             })
-            ->rawColumns(['avatar','actions','gender','is_silhouette','is_administrator'])
+            ->editColumn('is_approved', function(Member $member) {
+                switch($member->is_approved) {
+                    default:
+                    case 0:
+                    return '<i class="fa fa-times"></i> '.trans('labels.no');
+                    case 1:
+                        return '<i class="fa fa-check"></i> '.trans('labels.yes');
+                }
+            })
+            ->rawColumns(['avatar','actions','gender','is_silhouette','is_administrator','is_approved'])
             ->make(true);
+    }
+
+    public function getEdit(Member $member)
+    {
+        return view('app.member.edit')->with(compact('member'));
+    }
+
+    public function postUpdate(Request $request, Member $member)
+    {
+        $gender = (int) $request->get('gender', 0);
+        $approved = (int) $request->get('is_approved', 0);
+        $member->update([
+            'gender' => $gender,
+            'is_approved' => $approved,
+        ]);
+
+        return redirect()->back();
     }
 }

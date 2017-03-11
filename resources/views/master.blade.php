@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/png">
-    <title>Bracket Responsive Bootstrap3 Admin</title>
+    <title>Facebook Group Manager</title>
     <link href="{{ asset('css/style.default.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">

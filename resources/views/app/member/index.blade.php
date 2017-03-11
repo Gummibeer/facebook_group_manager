@@ -13,13 +13,13 @@
                         <input type="text" class="form-control" id="filter_id" data-column="id" />
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="filter_full_name">{{ trans('labels.full_name') }}</label>
                         <input type="text" class="form-control" id="filter_full_name" data-column="full_name" />
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <div class="form-group">
                         <label for="filter_gender">{{ trans('labels.gender') }}</label>
                         <select class="form-control" id="filter_gender" data-column="gender">
@@ -30,7 +30,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <div class="form-group">
                         <label for="filter_is_silhouette">{{ trans('labels.is_silhouette') }}</label>
                         <select class="form-control" id="filter_is_silhouette" data-column="is_silhouette">
@@ -40,10 +40,20 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <div class="form-group">
                         <label for="filter_is_administrator">{{ trans('labels.is_admin') }}</label>
                         <select class="form-control" id="filter_is_administrator" data-column="is_administrator">
+                            <option value=""></option>
+                            <option value="1">{{ trans('labels.yes') }}</option>
+                            <option value="0">{{ trans('labels.no') }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <label for="filter_is_approved">{{ trans('labels.is_approved') }}</label>
+                        <select class="form-control" id="filter_is_approved" data-column="is_approved">
                             <option value=""></option>
                             <option value="1">{{ trans('labels.yes') }}</option>
                             <option value="0">{{ trans('labels.no') }}</option>
@@ -62,6 +72,7 @@
                     <th>{{ trans('labels.gender') }}</th>
                     <th>{{ trans('labels.is_silhouette') }}</th>
                     <th>{{ trans('labels.is_admin') }}</th>
+                    <th>{{ trans('labels.is_approved') }}</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -86,6 +97,7 @@
                 { data: 'gender', name: 'gender' },
                 { data: 'is_silhouette', name: 'is_silhouette' },
                 { data: 'is_administrator', name: 'is_administrator' },
+                { data: 'is_approved', name: 'is_approved' },
                 { data: 'actions', name: 'actions', orderable: false, searchable: false }
             ],
             drawCallback: function() {

@@ -17,9 +17,13 @@ class DashboardController extends Controller
         foreach($gender->getLabels() as $key => $name) {
             $membersByGender[trans('labels.'.$name)] = $members->where('gender', $key)->count();
         }
+        $membersByApproved = [];
+        $membersByApproved[trans('labels.approved.0')] = $members->where('is_approved', 0)->count();
+        $membersByApproved[trans('labels.approved.1')] = $members->where('is_approved', 1)->count();
 
         return view('app.dashboard.index')->with([
             'membersByGender' => $membersByGender,
+            'membersByApproved' => $membersByApproved,
         ]);
     }
 }

@@ -18,6 +18,7 @@ class Member extends Model
         'gender',
         'gender_by_name',
         'is_active',
+        'is_approved',
     ];
 
     public function user()
@@ -57,13 +58,17 @@ class Member extends Model
         return $query->where('id', $id);
     }
 
-    public function scopeByActive(Builder $query, $active = 1) {
-        return $query->where('is_active', (int)$active);
+    public function scopeByActive(Builder $query, $is = 1) {
+        return $query->where('is_active', (int)$is);
     }
 
-    public function scopeByAdmin(Builder $query, $admin = 1)
+    public function scopeByApproved(Builder $query, $is = 1) {
+        return $query->where('is_approved', (int)$is);
+    }
+
+    public function scopeByAdmin(Builder $query, $is = 1)
     {
-        return $query->where('is_administrator', (int)$admin);
+        return $query->where('is_administrator', (int)$is);
     }
 
     public function scopeByGenderName(Builder $query, $gender)
