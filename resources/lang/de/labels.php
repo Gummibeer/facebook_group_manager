@@ -18,7 +18,7 @@ return [
     'id' => 'ID',
     'full_name' => 'Name',
     'gender' => 'Geschlecht',
-    'is_silhouette' => 'Umriss',
+    'is_silhouette' => 'Silhouette',
     'is_admin' => 'Admin',
     'email' => 'E-Mail',
     'facebook_id' => 'Facebook-ID',
