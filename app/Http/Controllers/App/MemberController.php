@@ -72,6 +72,28 @@ class MemberController extends Controller
                         return '<i class="fa '.$this->gender->getIcon(Gender::MALE).'"></i> '.trans('labels.'.$this->gender->getLabel(Gender::MALE));
                 }
             })
+            ->editColumn('gender_by_name', function(Member $member) {
+                switch($member->gender_by_name) {
+                    default:
+                    case Gender::UNKNOWN:
+                        return '<i class="fa '.$this->gender->getIcon(Gender::UNKNOWN).'"></i> '.trans('labels.'.$this->gender->getLabel(Gender::UNKNOWN));
+                    case Gender::FEMALE:
+                        return '<i class="fa '.$this->gender->getIcon(Gender::FEMALE).'"></i> '.trans('labels.'.$this->gender->getLabel(Gender::FEMALE));
+                    case Gender::MALE:
+                        return '<i class="fa '.$this->gender->getIcon(Gender::MALE).'"></i> '.trans('labels.'.$this->gender->getLabel(Gender::MALE));
+                }
+            })
+            ->editColumn('gender_by_picture', function(Member $member) {
+                switch($member->gender_by_picture) {
+                    default:
+                    case Gender::UNKNOWN:
+                        return '<i class="fa '.$this->gender->getIcon(Gender::UNKNOWN).'"></i> '.trans('labels.'.$this->gender->getLabel(Gender::UNKNOWN));
+                    case Gender::FEMALE:
+                        return '<i class="fa '.$this->gender->getIcon(Gender::FEMALE).'"></i> '.trans('labels.'.$this->gender->getLabel(Gender::FEMALE));
+                    case Gender::MALE:
+                        return '<i class="fa '.$this->gender->getIcon(Gender::MALE).'"></i> '.trans('labels.'.$this->gender->getLabel(Gender::MALE));
+                }
+            })
             ->editColumn('is_silhouette', function(Member $member) {
                 switch($member->is_silhouette) {
                     default:
@@ -99,7 +121,7 @@ class MemberController extends Controller
                         return '<i class="fa fa-check"></i> '.trans('labels.yes');
                 }
             })
-            ->rawColumns(['avatar','actions','gender','is_silhouette','is_administrator','is_approved'])
+            ->rawColumns(['avatar','actions','gender','gender_by_name','gender_by_picture','is_silhouette','is_administrator','is_approved'])
             ->make(true);
     }
 
