@@ -25,6 +25,14 @@
                         <strong>{{ trans('labels.gender_by_name') }}</strong>
                         <p>{{ trans('labels.'.app(\App\Libs\Gender::class)->getLabel($member->gender_by_name)) }}</p>
                     </div>
+                    <div class="col-md-2">
+                        <strong>{{ trans('labels.gender_by_picture') }}</strong>
+                        <p>{{ trans('labels.'.app(\App\Libs\Gender::class)->getLabel($member->gender_by_picture)) }}</p>
+                    </div>
+                    <div class="col-md-2">
+                        <strong>{{ trans('labels.age_by_picture') }}</strong>
+                        <p>{{ $member->age_by_picture }}</p>
+                    </div>
                     <div class="col-md-1">
                         <label for="select_gender">{{ trans('labels.gender') }}</label>
                         <select class="form-control" id="select_gender" name="gender">
@@ -32,6 +40,10 @@
                                 <option value="{{ $id }}" @if($member->getAttributes()['gender'] == $id) selected @endif>{{ trans('labels.'.$name) }}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="select_age">{{ trans('labels.age') }}</label>
+                        <input type="number" class="form-control" id="select_age" name="age" value="{{ $member->getAttributes()['age'] }}" />
                     </div>
                     <div class="col-md-1">
                         <label for="select_is_approved">{{ trans('labels.is_approved') }}</label>

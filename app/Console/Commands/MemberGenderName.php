@@ -6,7 +6,7 @@ use App\Libs\Gender;
 use App\Models\Member;
 use Illuminate\Console\Command;
 
-class MemberGender extends Command
+class MemberGenderName extends Command
 {
     protected $signature = 'member:gender:name';
     protected $description = 'Sets gender by name.';

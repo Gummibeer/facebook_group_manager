@@ -2,7 +2,8 @@
 
 namespace App\Console;
 
-use App\Console\Commands\MemberGender;
+use App\Console\Commands\MemberGenderName;
+use App\Console\Commands\MemberGenderPicture;
 use App\Console\Commands\MemberLoad;
 use App\Console\Commands\TokenRefresh;
 use Illuminate\Console\Scheduling\Schedule;
@@ -11,7 +12,8 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 class Kernel extends ConsoleKernel
 {
     protected $commands = [
-        MemberGender::class,
+        MemberGenderName::class,
+        MemberGenderPicture::class,
         MemberLoad::class,
         TokenRefresh::class,
     ];

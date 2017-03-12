@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Libs\Gender;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,8 +18,11 @@ class Member extends Model
         'is_administrator',
         'gender',
         'gender_by_name',
+        'gender_by_picture',
         'is_active',
         'is_approved',
+        'age',
+        'age_by_picture',
     ];
 
     public function user()
@@ -38,8 +42,23 @@ class Member extends Model
 
     public function getGenderAttribute($value)
     {
+        if($value == Gender::UNKNOWN) {
+            if($this->gender_by_picture != Gender::UNKNOWN) {
+                return $this->gender_by_picture;
+            }
+            if($this->gender_by_name != Gender::UNKNOWN) {
+                return $this->gender_by_name;
+            }
+        }
+        return $value;
+    }
+
+    public function getAgeAttribute($value)
+    {
         if($value == 0) {
-            return $this->gender_by_name;
+            if($this->age_by_picture != 0) {
+                return $this->age_by_picture;
+            }
         }
         return $value;
     }

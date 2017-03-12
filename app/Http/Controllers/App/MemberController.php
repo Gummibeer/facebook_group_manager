@@ -111,9 +111,11 @@ class MemberController extends Controller
     public function postUpdate(Request $request, Member $member)
     {
         $gender = (int) $request->get('gender', 0);
+        $age = (int) $request->get('age', 0);
         $approved = (int) $request->get('is_approved', 0);
         $member->update([
             'gender' => $gender,
+            'age' => $age,
             'is_approved' => $approved,
         ]);
 
