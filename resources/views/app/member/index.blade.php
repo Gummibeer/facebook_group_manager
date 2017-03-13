@@ -13,13 +13,13 @@
                         <input type="text" class="form-control" id="filter_id" data-column="id" />
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label for="filter_full_name">{{ trans('labels.full_name') }}</label>
                         <input type="text" class="form-control" id="filter_full_name" data-column="full_name" />
                     </div>
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label for="filter_is_silhouette">{{ trans('labels.is_silhouette') }}</label>
                         <select class="form-control" id="filter_is_silhouette" data-column="is_silhouette">
@@ -29,7 +29,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label for="filter_is_administrator">{{ trans('labels.is_admin') }}</label>
                         <select class="form-control" id="filter_is_administrator" data-column="is_administrator">
@@ -39,7 +39,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label for="filter_is_approved">{{ trans('labels.is_approved') }}</label>
                         <select class="form-control" id="filter_is_approved" data-column="is_approved">
@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="clearfix"></div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label for="filter_gender">{{ trans('labels.gender') }}</label>
                         <select class="form-control" id="filter_gender" data-column="gender">
@@ -61,7 +61,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label for="filter_gender_by_name">{{ trans('labels.gender_by_name') }}</label>
                         <select class="form-control" id="filter_gender_by_name" data-column="gender_by_name">
@@ -72,7 +72,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label for="filter_gender_by_picture">{{ trans('labels.gender_by_picture') }}</label>
                         <select class="form-control" id="filter_gender_by_picture" data-column="gender_by_picture">
@@ -84,13 +84,13 @@
                     </div>
                 </div>
                 <div class="clearfix"></div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label for="filter_age">{{ trans('labels.age') }}</label>
                         <input type="text" class="form-control" id="filter_age" data-column="age" />
                     </div>
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label for="filter_age_by_picture">{{ trans('labels.age_by_picture') }}</label>
                         <input type="text" class="form-control" id="filter_age_by_picture" data-column="age_by_picture" />
