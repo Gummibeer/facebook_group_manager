@@ -37,6 +37,7 @@ class LoginController extends Controller
             'email',
             'public_profile',
             'user_managed_groups',
+            'publish_actions',
         ];
         $url = $helper->getLoginUrl(route('auth.facebook.callback'), $permissions);
         return redirect()->to($url);

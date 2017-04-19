@@ -17,16 +17,20 @@
                         <strong>{{ trans('labels.email') }}</strong>
                         <p>{{ $user->email }}</p>
                     </div>
-                    <div class="col-md-2">
-                        <strong>{{ trans('labels.facebook_id') }}</strong>
-                        <p>{{ $user->facebook_id }}</p>
-                    </div>
                     <div class="col-md-1">
                         <label for="select_is_admin">{{ trans('labels.is_admin') }}</label>
                         <select class="form-control" id="select_is_admin" name="is_admin">
                             <option value="1" @if($user->is_admin) selected @endif>{{ trans('labels.yes') }}</option>
                             <option value="0" @if(!$user->is_admin) selected @endif>{{ trans('labels.no') }}</option>
                         </select>
+                    </div>
+                    <div class="col-md-2">
+                        <strong>{{ trans('labels.facebook_id') }}</strong>
+                        <p>{{ $user->facebook_id }}</p>
+                    </div>
+                    <div class="col-md-12">
+                        <strong>{{ trans('labels.facebook_token') }}</strong>
+                        <input type="text" readonly class="form-control" value="{{ $user->facebook_token }}"/>
                     </div>
                 </div>
             </div>

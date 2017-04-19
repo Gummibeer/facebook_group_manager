@@ -9,6 +9,10 @@ return [
     'administration' => 'Administration',
     'users' => 'Benutzer',
     'user' => 'Benutzer',
+    'posts' => 'Beiträge',
+    'post' => 'Beitrag',
+    'comments' => 'Kommentare',
+    'comment' => 'Kommentar',
 
     'index' => 'Übersicht',
     'edit' => 'bearbeiten',
@@ -48,6 +52,10 @@ return [
 
     'members_without_avatar' => 'Mitglieder ohne Profilbild',
     'members_approved' => 'überprüfte Mitglieder',
+
+    'posts_with_picture' => 'Beiträge mit Bild',
+
+    'commands_state' => 'Konsolen Status',
 
     'approved' => [
         '0' => 'nein',

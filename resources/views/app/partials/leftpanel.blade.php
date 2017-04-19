@@ -20,6 +20,12 @@
                 </a>
             </li>
             @endcan
+            <li>
+                <a href="{{ route('app.post.index') }}">
+                    <i class="fa fa-commenting"></i>
+                    <span>{{ trans('labels.posts') }}</span>
+                </a>
+            </li>
         </ul>
         @can('manage-user')
         <h5 class="sidebartitle">{{ trans('labels.administration') }}</h5>

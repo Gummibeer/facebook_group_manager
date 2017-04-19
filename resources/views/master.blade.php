@@ -8,13 +8,16 @@
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/png">
     <title>Facebook Group Manager</title>
     <link href="{{ asset('css/style.default.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/twemoji.css') }}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!--[if lt IE 9]>
         <script src="{{ asset('js/html5shiv.js') }}"></script>
         <script src="{{ asset('js/respond.min.js') }}"></script>
     <![endif]-->
+    <script type="application/javascript">
+        var BASE_URL = "{{ url('/') }}";
+    </script>
 </head>
 <body class="@yield('body-class')">
     @yield('layout')

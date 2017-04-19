@@ -9,14 +9,14 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Facebook
 {
-    public function getClient()
+    public function getClient($newToken = false)
     {
         $fb = new FB([
             'app_id' => config('services.facebook.app_id'),
             'app_secret' => config('services.facebook.app_secret'),
             'default_graph_version' => 'v2.8',
         ]);
-        $fb->setDefaultAccessToken($this->getAccessToken());
+        $fb->setDefaultAccessToken($this->getAccessToken($newToken));
         return $fb;
     }
 
@@ -27,7 +27,7 @@ class Facebook
         return $client->getLongLivedAccessToken($token);
     }
     
-    public function getAccessToken()
+    public function getAccessToken($newToken = false)
     {
         $users = User::whereHas('member', function (Builder $query) {
             return $query->byAdmin();
@@ -36,7 +36,11 @@ class Facebook
             $users = User::byAdmin()->get();
         }
         if($users->count() > 0) {
-            return $users->random()->facebook_token;
+            $user = $users->random();
+            if($newToken) {
+                return $this->generateToken($user);
+            }
+            return $user->facebook_token;
         }
         return '';
     }
@@ -46,13 +50,22 @@ class Facebook
         $longToken = new AccessToken($user->facebook_token);
         $expires = new Carbon($longToken->getExpiresAt());
         if($expires->diffInDays() < 7) {
-            $fb = $this->getClient();
-            $client = $fb->getOAuth2Client();
-            $code = $client->getCodeFromLongLivedAccessToken($longToken);
-            $accessToken = $client->getAccessTokenFromCode($code);
             $user->update([
-                'facebook_token' => $accessToken,
+                'facebook_token' => $this->generateToken($user),
             ]);
         }
+    }
+
+    public function generateToken(User $user)
+    {
+        $fb = $this->getClient();
+        $client = $fb->getOAuth2Client();
+        $code = $client->getCodeFromLongLivedAccessToken(new AccessToken($user->facebook_token));
+        return $client->getAccessTokenFromCode($code);
+    }
+    
+    public function getAvatar($id)
+    {
+        return 'https://graph.facebook.com/'.$id.'/picture?type=square';
     }
 }

@@ -2,13 +2,16 @@
 
 namespace App\Console\Commands;
 
+use App\Console\Traits\HasRunningState;
 use App\Libs\Facebook;
 use App\Models\Member;
 use Illuminate\Console\Command;
 
 class MemberLoad extends Command
 {
-    protected $signature = 'member:load';
+    use HasRunningState;
+    
+    protected $signature = 'load:members';
     protected $description = 'Loads all members from facebook.';
 
     protected $facebook;
@@ -21,7 +24,7 @@ class MemberLoad extends Command
 
     public function handle()
     {
-        $fb = $this->facebook->getClient();
+        $fb = $this->facebook->getClient(true);
         $groupId = config('services.facebook.group_id');
 
         $this->info('load members for group #'.$groupId);

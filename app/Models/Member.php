@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Libs\Facebook;
 use App\Libs\Gender;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Member extends Model
 {
     public $timestamps = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'id',
@@ -30,9 +32,19 @@ class Member extends Model
         return $this->belongsTo(User::class, 'facebook_id', 'id');
     }
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'from_id', 'id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'from_id', 'id');
+    }
+
     public function getAvatarAttribute()
     {
-        return 'https://graph.facebook.com/'.$this->id.'/picture?type=square';
+        return (new Facebook())->getAvatar($this->id);
     }
 
     public function getPictureAttribute()

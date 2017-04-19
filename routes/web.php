@@ -40,4 +40,11 @@ Route::group(['namespace' => 'App', 'middleware' => 'auth'], function() {
         Route::post('update/{user}', 'UserController@postUpdate')
             ->name('app.user.update');
     });
+
+    Route::group(['prefix' => 'post'], function() {
+        Route::get('/', 'PostController@getIndex')
+            ->name('app.post.index');
+        Route::get('/comments/{post}', 'PostController@getComments')
+            ->name('app.post.comments');
+    });
 });
