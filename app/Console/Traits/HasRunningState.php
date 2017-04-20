@@ -18,6 +18,7 @@ trait HasRunningState
     {
         $key = $this->getRunningKeyName();
         \Cache::decrement($key);
+        $this->checkRunningValue($key);
     }
 
     public function isRunning()
@@ -38,10 +39,15 @@ trait HasRunningState
             $this->getName(),
             'running',
         ]));
-        if(!\Cache::has($key)) {
+        $this->checkRunningValue($key);
+        return $key;
+    }
+
+    private function checkRunningValue($key)
+    {
+        if(!\Cache::has($key) || \Cache::get($key) < 0) {
             \Cache::put($key, 0, 30);
         }
-        return $key;
     }
 
     private function getLineKeyName()
