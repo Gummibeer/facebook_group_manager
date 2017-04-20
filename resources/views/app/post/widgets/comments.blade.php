@@ -10,10 +10,13 @@
                         <a href="https://facebook.com/{{ $comment->from_id }}" target="_blank">
                             <strong>{{ $comment->from_name }}</strong>
                         </a>
-                        <span class="text-muted pull-right">{{ $comment->created_at }}</span>
+                        <time class="text-muted pull-right" datetime="{{ $comment->created_at }}">{{ $comment->created_at }}</time>
                     </header>
                     <section class="twemoji-support">
                         {!! nl2br($comment->message) !!}
+                        @if(!empty($comment->picture))
+                            <img class="img-responsive" src="{{ $comment->picture }}" />
+                        @endif
                     </section>
 
                     @foreach($comment->comments as $subcomment)
@@ -26,10 +29,13 @@
                                 <a href="https://facebook.com/{{ $subcomment->from_id }}" target="_blank">
                                     <strong>{{ $subcomment->from_name }}</strong>
                                 </a>
-                                <span class="text-muted pull-right">{{ $subcomment->created_at }}</span>
+                                <time class="text-muted pull-right" datetime="{{ $subcomment->created_at }}">{{ $subcomment->created_at }}</time>
                             </header>
                             <section class="twemoji-support">
                                 {!! nl2br($subcomment->message) !!}
+                                @if(!empty($subcomment->picture))
+                                    <img class="img-responsive" src="{{ $subcomment->picture }}" />
+                                @endif
                             </section>
                         </div>
                     </div>

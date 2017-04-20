@@ -57,6 +57,7 @@ return [
 
     'comments_without_parent' => 'Hauptkommentare',
     'comments_with_parent' => 'Unterkommentare',
+    'comments_with_picture' => 'Kommentare mit Bild',
 
     'commands_state' => 'Konsolen Status',
 

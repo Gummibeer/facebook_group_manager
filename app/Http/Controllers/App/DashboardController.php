@@ -7,7 +7,10 @@ use App\Console\Commands\MemberLoad;
 use App\Console\Commands\PostLoad;
 use App\Http\Controllers\Controller;
 use App\Libs\Gender;
+use App\Models\Comment;
 use App\Models\Member;
+use App\Models\Post;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -35,5 +38,44 @@ class DashboardController extends Controller
             'membersByApproved' => $membersByApproved,
             'commands' => $commands,
         ]);
+    }
+
+    public function getActivity($day)
+    {
+        $day = Carbon::parse($day, 'UTC');
+
+        $startDay = $day->startOfDay()->__toString();
+        $endDay = $day->endOfDay()->__toString();
+        $startMonth = $day->startOfMonth()->__toString();
+        $endMonth = $day->endOfMonth()->__toString();
+
+        $postsMonth = Post::query()
+            ->where('created_at', '>=', $startMonth)
+            ->where('created_at', '<=', $endMonth)
+            ->count();
+
+        $commentsMonth = Comment::query()
+            ->where('created_at', '>=', $startMonth)
+            ->where('created_at', '<=', $endMonth)
+            ->count();
+
+        $postsDay = Post::query()
+            ->where('created_at', '>=', $startDay)
+            ->where('created_at', '<=', $endDay)
+            ->count();
+
+        $commentsDay = Comment::query()
+            ->where('created_at', '>=', $startDay)
+            ->where('created_at', '<=', $endDay)
+            ->count();
+
+        $monthDays = $day->daysInMonth;
+        $sinceDays = $day->startOfMonth()->diffInDays(Carbon::now('UTC'), true);
+        $days = min($monthDays, $sinceDays);
+
+        $postsAvg = $postsMonth / $days;
+        $commentsAvg = $commentsMonth / $days;
+
+        return response()->json(compact('postsDay', 'commentsDay', 'postsMonth', 'commentsMonth', 'days', 'postsAvg', 'commentsAvg'));
     }
 }

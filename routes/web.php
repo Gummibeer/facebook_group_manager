@@ -18,6 +18,8 @@ Route::group(['namespace' => 'Auth'], function() {
 Route::group(['namespace' => 'App', 'middleware' => 'auth'], function() {
     Route::get('dashboard', 'DashboardController@getIndex')
         ->name('app.dashboard.index');
+    Route::get('activity/{day}', 'DashboardController@getActivity')
+        ->name('app.dashboard.activity');
 
     Route::group(['prefix' => 'member', 'middleware' => 'can:manage-member'], function() {
         Route::get('/', 'MemberController@getIndex')

@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/png">
     <title>Facebook Group Manager</title>
     <link href="{{ asset('css/style.default.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/fullcalendar.css') }}" rel="stylesheet">
     <link href="{{ asset('css/twemoji.css') }}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -28,6 +29,8 @@
     <script src="{{ asset('js/jquery.datatables.min.js') }}"></script>
     <script src="{{ asset('js/chart.min.js') }}"></script>
     <script src="{{ asset('js/masonry.pkgd.min.js') }}"></script>
+    <script src="{{ asset('js/moment-with-locales.min.js') }}"></script>
+    <script src="{{ asset('js/fullcalendar.min.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
     @stack('scripts')
 </body>

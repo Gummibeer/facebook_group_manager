@@ -18,6 +18,7 @@ class Comment extends Model
         'from_name',
         'post_id',
         'parent_id',
+        'picture',
     ];
 
     public function from()
@@ -60,5 +61,10 @@ class Comment extends Model
     public function scopeByParent(Builder $query, $parentId)
     {
         $query->where('parent_id', $parentId);
+    }
+
+    public function scopeWithPicture(Builder $query)
+    {
+        $query->whereNotNull('picture');
     }
 }

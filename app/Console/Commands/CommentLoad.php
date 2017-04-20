@@ -68,13 +68,13 @@ class CommentLoad extends Command
                 'from_name' => $fbComment['from']['name'],
                 'post_id' => $postId,
                 'parent_id' => $parentId,
+                'picture' => array_get($fbComment, 'attachment.media.image.src'),
             ];
             if (!Comment::byId($fbComment['id'])->exists()) {
                 Comment::create($data);
             } else {
                 Comment::byId($fbComment['id'])->first()->update($data);
             }
-            // ToDo: add attachments
             if ($fbComment['comment_count'] > 0) {
                 $this->comment('load sub-comments for ' . $fbComment['id']);
                 $this->scrapeData($postId, $fbComment['id']);

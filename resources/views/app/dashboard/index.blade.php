@@ -28,6 +28,9 @@
         <div class="col-xs-12 col-md-3">
             @include('app.dashboard.widgets.comments_with_parent_count')
         </div>
+        <div class="col-xs-12 col-md-3">
+            @include('app.dashboard.widgets.comments_with_picture_count')
+        </div>
         <div class="clearfix"></div>
         <div class="col-xs-12 col-md-3">
             @include('app.dashboard.widgets.members_by_gender')
@@ -39,4 +42,5 @@
             @include('app.dashboard.widgets.command_state')
         </div>
     </div>
+    @include('app.dashboard.widgets.activity_calendar')
 @endsection
