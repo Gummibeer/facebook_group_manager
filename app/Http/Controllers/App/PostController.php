@@ -16,7 +16,13 @@ class PostController extends Controller
 
     public function getComments(Post $post)
     {
-        $comments = $post->comments()->orderBy('created_at', 'asc')->get();
+        $comments = $post->comments()
+            ->withoutParent()
+            ->orderBy('created_at', 'asc')
+            ->with(['comments' => function($query) {
+                $query->orderBy('created_at', 'asc');
+            }])
+            ->get();
 
         return view('app.post.widgets.comments')->with(compact('comments'));
     }

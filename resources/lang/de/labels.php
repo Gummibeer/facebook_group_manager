@@ -55,6 +55,9 @@ return [
 
     'posts_with_picture' => 'Beiträge mit Bild',
 
+    'comments_without_parent' => 'Hauptkommentare',
+    'comments_with_parent' => 'Unterkommentare',
+
     'commands_state' => 'Konsolen Status',
 
     'approved' => [

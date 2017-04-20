@@ -22,6 +22,12 @@
         <div class="col-xs-12 col-md-3">
             @include('app.dashboard.widgets.comments_count')
         </div>
+        <div class="col-xs-12 col-md-3">
+            @include('app.dashboard.widgets.comments_without_parent_count')
+        </div>
+        <div class="col-xs-12 col-md-3">
+            @include('app.dashboard.widgets.comments_with_parent_count')
+        </div>
         <div class="clearfix"></div>
         <div class="col-xs-12 col-md-3">
             @include('app.dashboard.widgets.members_by_gender')
