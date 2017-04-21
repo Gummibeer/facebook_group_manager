@@ -59,29 +59,31 @@ class CommentLoad extends Command
 
     protected function handleComment($postId, array $fbComment, $parentId = null)
     {
-        try {
-            $data = [
-                'id' => $fbComment['id'],
-                'message' => $fbComment['message'],
-                'created_at' => $fbComment['created_time'],
-                'from_id' => $fbComment['from']['id'],
-                'from_name' => $fbComment['from']['name'],
-                'post_id' => $postId,
-                'parent_id' => $parentId,
-                'picture' => array_get($fbComment, 'attachment.media.image.src'),
-            ];
-            if (!Comment::byId($fbComment['id'])->exists()) {
-                Comment::create($data);
-            } else {
-                Comment::byId($fbComment['id'])->first()->update($data);
+        if(!empty($fbComment['message'])) {
+            try {
+                $data = [
+                    'id' => $fbComment['id'],
+                    'message' => $fbComment['message'],
+                    'created_at' => $fbComment['created_time'],
+                    'from_id' => $fbComment['from']['id'],
+                    'from_name' => $fbComment['from']['name'],
+                    'post_id' => $postId,
+                    'parent_id' => $parentId,
+                    'picture' => array_get($fbComment, 'attachment.media.image.src'),
+                ];
+                if (!Comment::byId($fbComment['id'])->exists()) {
+                    Comment::create($data);
+                } else {
+                    Comment::byId($fbComment['id'])->first()->update($data);
+                }
+                if ($fbComment['comment_count'] > 0) {
+                    $this->comment('load sub-comments for ' . $fbComment['id']);
+                    $this->scrapeData($postId, $fbComment['id']);
+                }
+            } catch (\Exception $ex) {
+                $this->error($ex->getMessage());
+                $this->comment(json_encode($fbComment, JSON_PRETTY_PRINT));
             }
-            if ($fbComment['comment_count'] > 0) {
-                $this->comment('load sub-comments for ' . $fbComment['id']);
-                $this->scrapeData($postId, $fbComment['id']);
-            }
-        } catch (\Exception $ex) {
-            $this->error($ex->getMessage());
-            $this->comment(json_encode($fbComment, JSON_PRETTY_PRINT));
         }
     }
 }
