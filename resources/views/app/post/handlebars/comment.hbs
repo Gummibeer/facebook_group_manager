@@ -1,0 +1,20 @@
+<div class="media nomargin">
+    <div class="media-left pull-left">
+        <img class="media-object" src="https://graph.facebook.com/{{ from_id }}/picture?type=square" width="48" height="48" />
+    </div>
+    <div class="media-body">
+        <header>
+            <a href="https://facebook.com/{{ from_id }}" target="_blank">
+                <strong>{{ from_name }}</strong>
+            </a>
+            <time class="text-muted pull-right" datetime="{{ created_at }}"></time>
+        </header>
+        <section class="twemoji-support">
+            {{{ message }}}
+            {{#if picture }}
+                <img class="img-responsive" src="{{ picture }}" />
+            {{/if}}
+        </section>
+        <div class="subcomments"></div>
+    </div>
+</div>

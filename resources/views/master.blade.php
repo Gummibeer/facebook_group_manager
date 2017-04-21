@@ -9,7 +9,7 @@
     <title>Facebook Group Manager</title>
     <link href="{{ asset('css/style.default.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fullcalendar.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/twemoji.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!--[if lt IE 9]>
@@ -22,6 +22,10 @@
 </head>
 <body class="@yield('body-class')">
     @yield('layout')
+    <div id="ajax-loading-info" style="display: none;">
+        <i class="fa fa-spinner fa-spin"></i>
+        {{ trans('labels.ajax_loading') }}
+    </div>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery-migrate-1.2.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>

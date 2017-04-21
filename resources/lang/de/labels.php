@@ -61,6 +61,8 @@ return [
 
     'commands_state' => 'Konsolen Status',
 
+    'ajax_loading' => 'Elemente werden geladen ...',
+
     'approved' => [
         '0' => 'nein',
         '1' => 'ja',

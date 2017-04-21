@@ -46,7 +46,14 @@ Route::group(['namespace' => 'App', 'middleware' => 'auth'], function() {
     Route::group(['prefix' => 'post'], function() {
         Route::get('/', 'PostController@getIndex')
             ->name('app.post.index');
-        Route::get('/comments/{post}', 'PostController@getComments')
-            ->name('app.post.comments');
+    });
+
+    Route::group(['prefix' => 'api'], function() {
+        Route::group(['prefix' => 'post'], function() {
+            Route::get('/', 'PostController@getApiIndex')
+                ->name('api.post.index');
+            Route::get('/comments/{post}', 'PostController@getApiComments')
+                ->name('api.post.comments');
+        });
     });
 });

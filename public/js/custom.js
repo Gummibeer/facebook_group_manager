@@ -83,6 +83,23 @@ function layoutMasonry() {
 jQuery(window).on('load', function () {
     "use strict";
 
+    (function (AjaxLoader) {
+        var container = '#ajax-loading-info';
+        var countStarts = 0;
+
+        AjaxLoader.up = function () {
+            countStarts++;
+            jQuery(container).show();
+        };
+
+        AjaxLoader.down = function () {
+            countStarts--;
+            if (countStarts < 1) {
+                jQuery(container).hide();
+            }
+        };
+    })(window.AjaxLoader = window.AjaxLoader || {});
+
     // Page Preloader
     jQuery('#preloader').delay(350).fadeOut(function () {
         jQuery('body').delay(350).css({'overflow': 'visible'});

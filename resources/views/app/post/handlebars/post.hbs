@@ -1,0 +1,32 @@
+<div class="col-xs-12 col-md-4 grid-item">
+    <article class="panel panel-default post">
+        <header class="padding5">
+            <a href="https://facebook.com/{{ from_id }}" target="_blank">
+                <strong>{{ from_name }}</strong>
+            </a>
+            <a href="https://facebook.com/{{ id }}" target="_blank">
+                <time class="text-muted pull-right" datetime="{{ created_at }}"></time>
+            </a>
+        </header>
+        <section class="twemoji-support padding5">
+            {{{ message }}}
+        </section>
+        {{#if picture }}
+            <img class="img-responsive" src="{{ picture }}" />
+        {{/if}}
+        <footer class="padding5">
+            <ul class="list-inline nomargin nopadding">
+                <li data-toggle="collapse" data-target="#post-comments-{{ id }}" class="{{#if comments_count }} cursor-pointer {{/if}}">
+                    <i class="icon fa fa-comments-o"></i>
+                    {{ comments_count }}
+                    {{ label_comments }}
+                </li>
+            </ul>
+        </footer>
+        {{#if comments_count }}
+        <div id="post-comments-{{ id }}" class="post-comments padding5 collapse" data-loaded="false" data-post-id="{{ id }}" data-count="{{ comments_count }}">
+            <div class="media-list"></div>
+        </div>
+        {{/if}}
+    </article>
+</div>

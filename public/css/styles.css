@@ -1,0 +1,19 @@
+img.emoji {
+    height: 1.25em;
+    width: 1.25em;
+    margin: 0 .1em;
+}
+
+#ajax-loading-info {
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    padding: 10px;
+    background: #1caf9a;
+    color: #ffffff;
+    z-index: 99999;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
