@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
          $schedule->command('load:posts', [
              '--since' => '-1 hour',
          ])
-             ->everyThirtyMinutes()
+             ->everyTenMinutes()
              ->runInBackground()
              ->withoutOverlapping();
         $schedule->command('load:comments')
