@@ -12,7 +12,7 @@ class PostLoad extends Command
 {
     use HasRunningState;
 
-    protected $signature = 'load:posts {--since="-1 day"}';
+    protected $signature = 'load:posts {--since=-1 day}';
     protected $description = 'Loads all posts from facebook.';
 
     protected $facebook;
