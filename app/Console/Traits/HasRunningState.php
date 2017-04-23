@@ -80,7 +80,7 @@ trait HasRunningState
     public function write($string)
     {
         $key = $this->getLineKeyName();
-        \Cache::forever($key, $string);
+        \Cache::forever($key, (string)$string);
     }
 
     public function read()
