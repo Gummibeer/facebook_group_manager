@@ -2,7 +2,10 @@
 
 @section('content')
     <div>
-        <div class="row" id="posts" data-url="{{ route('api.post.index') }}" data-label-comments="{{ trans('labels.comments') }}"></div></div>
+        <div class="row" id="posts" data-url="{{ route('api.post.index') }}" data-label-comments="{{ trans('labels.comments') }}">
+            <div class="col-xs-12 col-md-4 grid-item"></div>
+        </div>
+    </div>
 
     <script id="template-post" type="text/x-handlebars-template">
         <?php include(resource_path('views/app/post/handlebars/post.hbs')); ?>
@@ -76,28 +79,27 @@
                         var $post = $(postTemplate(post));
                         parseTime($post);
                         parseTwemoji($post);
-                        $postContainer.append($post);
+                        $post
+                                .appendTo($postContainer)
+                                .imagesLoaded(function (instance) {
+                                    $postContainer.masonry('appended', instance.elements);
+                                });
                     });
                     AjaxLoader.down();
                     isLoadingPosts = false;
-                    $postContainer.imagesLoaded(function () {
-                        reloadPostMasonry(true);
-                    });
                 });
             }
         }
 
-        function reloadPostMasonry(reload) {
-            reload = reload || false;
+        function loadPostMasonry() {
             $postContainer.masonry({
-                itemSelector: '.grid-item'
+                itemSelector: '.grid-item',
+                transitionDuration: 0
             });
-            if(reload) {
-                $postContainer.masonry('reloadItems');
-            }
         }
 
         loadPosts();
+        loadPostMasonry();
 
         $(window).on('scroll', function() {
             var $window = $(window);
@@ -139,14 +141,14 @@
 
                             $this.data('loaded', true);
                             $this.imagesLoaded(function () {
-                                reloadPostMasonry();
+                                loadPostMasonry();
                             });
                             AjaxLoader.down();
                         });
                     }
                 })
                 .on('shown.bs.collapse hidden.bs.collapse', function () {
-                    reloadPostMasonry();
+                    loadPostMasonry();
                 });
     });
 </script>

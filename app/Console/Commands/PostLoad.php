@@ -2,11 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Console\Command;
 use App\Console\Traits\HasRunningState;
 use App\Libs\Facebook;
 use App\Models\Post;
 use Carbon\Carbon;
-use Illuminate\Console\Command;
 
 class PostLoad extends Command
 {
@@ -28,7 +28,12 @@ class PostLoad extends Command
         $fb = $this->facebook->getClient(true);
         $groupId = config('services.facebook.group_id');
 
-        $since = Carbon::now('UTC')->modify($this->option('since'));
+        try {
+            $since = Carbon::now('UTC')->modify($this->option('since'));
+        } catch(\Exception $ex) {
+            $this->error('The since option is unparsable - fallback "-1 day" is used');
+            $since = Carbon::now('UTC')->subDay();
+        }
 
         $this->info('load posts for group #'.$groupId.' since '.$since->format('Y-m-d H:i:s T'));
         $response = $fb->get($groupId.'/feed?fields=message,created_time,id,from,full_picture&limit=1000&since='.$since->getTimestamp());

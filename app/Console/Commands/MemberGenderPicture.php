@@ -6,7 +6,7 @@ use App\Libs\Gender;
 use App\Models\Member;
 use Aws\Rekognition\Exception\RekognitionException;
 use Aws\Rekognition\RekognitionClient;
-use Illuminate\Console\Command;
+use App\Console\Command;
 
 class MemberGenderPicture extends Command
 {

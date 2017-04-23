@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use App\Libs\Facebook;
 use App\Models\User;
-use Illuminate\Console\Command;
+use App\Console\Command;
 
 class TokenRefresh extends Command
 {

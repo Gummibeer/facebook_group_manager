@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use App\Libs\Gender;
 use App\Models\Member;
-use Illuminate\Console\Command;
+use App\Console\Command;
 
 class MemberGenderName extends Command
 {

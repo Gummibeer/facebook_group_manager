@@ -6,7 +6,7 @@ use App\Console\Traits\HasRunningState;
 use App\Libs\Facebook;
 use App\Models\Post;
 use App\Models\Comment;
-use Illuminate\Console\Command;
+use App\Console\Command;
 
 class CommentLoad extends Command
 {
@@ -21,14 +21,14 @@ class CommentLoad extends Command
     public function __construct(Facebook $facebook)
     {
         $this->facebook = $facebook;
-        $this->client = $this->facebook->getClient(true);
         parent::__construct();
     }
 
     public function handle()
     {
+        $this->client = $this->facebook->getClient(true);
         $groupId = config('services.facebook.group_id');
-        $posts = Post::byCreatedAt('-3 days')->get();
+        $posts = Post::byCreatedAt('-3 days')->orderBy('created_at', 'desc')->get();
         $this->info('load comments for group #' . $groupId . ' for ' . $posts->count() . ' latest posts');
         foreach ($posts as $post) {
             $this->scrapeData($post->id);
@@ -53,7 +53,7 @@ class CommentLoad extends Command
             } while (!is_null($edge));
             $this->info('scraped ' . $comments->count() . ' comments data for ' . implode(':', array_filter([$postId, $parentId])));
         } catch (\Exception $ex) {
-            $this->error($ex->getMessage());
+            $this->error($ex);
         }
     }
 
@@ -81,7 +81,7 @@ class CommentLoad extends Command
                     $this->scrapeData($postId, $fbComment['id']);
                 }
             } catch (\Exception $ex) {
-                $this->error($ex->getMessage());
+                $this->error($ex);
                 $this->comment(json_encode($fbComment, JSON_PRETTY_PRINT));
             }
         }

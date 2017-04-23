@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Console\Traits\HasRunningState;
 use App\Libs\Facebook;
 use App\Models\Member;
-use Illuminate\Console\Command;
+use App\Console\Command;
 
 class MemberLoad extends Command
 {
