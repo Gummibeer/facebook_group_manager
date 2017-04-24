@@ -86,6 +86,6 @@ return [
     |
     */
 
-    'prefix' => 'laravel',
+    'prefix' => 'fb_group_'.env('FB_GROUP_ID'),
 
 ];
