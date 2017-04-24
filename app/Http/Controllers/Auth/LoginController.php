@@ -74,6 +74,10 @@ class LoginController extends Controller
             ]);
         }
 
+        $user->update([
+            'facebook_token' => $accessToken,
+        ]);
+
         if(!$user->hasMember() && !$user->is_admin) {
             return redirect()->route('auth.login');
         }
