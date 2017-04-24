@@ -47,24 +47,28 @@ class PostController extends Controller
                 return $post;
             });
 
-        $nextDate = $posts->last()->created_at;
-        $nextCursor = base64_encode($nextDate);
-
-        return response()->json([
+        $data = [
             'limit' => $limit,
             'current' => [
                 'cursor' => $cursor,
                 'date' => $date,
                 'url' => $request->fullUrl(),
             ],
-            'next' => [
+            'posts' => $posts,
+        ];
+        if($posts->count() > 0) {
+            $nextDate = $posts->last()->created_at;
+            $nextCursor = base64_encode($nextDate);
+            $data['next'] = [
                 'cursor' => $nextCursor,
                 'date' => $nextDate,
                 'url' => route('api.post.index', [
                     'c' => $nextCursor,
                 ]),
-            ],
-            'posts' => $posts,
-        ]);
+            ];
+        }
+
+
+        return response()->json($data);
     }
 }

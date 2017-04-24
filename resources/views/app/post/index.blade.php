@@ -67,24 +67,28 @@
         var commentTemplate = Handlebars.compile($('#template-comment').html());
 
         function loadPosts() {
-            if(!isLoadingPosts) {
+            if(!isLoadingPosts && postCursor !== false) {
                 isLoadingPosts = true;
                 AjaxLoader.up();
                 $.getJSON(postUrl + '?c=' + postCursor, function (data) {
-                    postCursor = data.next.cursor;
-                    $.each(data.posts, function () {
-                        var post = this;
-                        post['label_comments'] = $postContainer.data('label-comments');
-                        post['message'] = post['message'].nl2br();
-                        var $post = $(postTemplate(post));
-                        parseTime($post);
-                        parseTwemoji($post);
-                        $post
-                                .appendTo($postContainer)
-                                .imagesLoaded(function (instance) {
-                                    $postContainer.masonry('appended', instance.elements);
-                                });
-                    });
+                    if(data.next != undefined) {
+                        postCursor = data.next.cursor;
+                        $.each(data.posts, function () {
+                            var post = this;
+                            post['label_comments'] = $postContainer.data('label-comments');
+                            post['message'] = post['message'].nl2br();
+                            var $post = $(postTemplate(post));
+                            parseTime($post);
+                            parseTwemoji($post);
+                            $post
+                                    .appendTo($postContainer)
+                                    .imagesLoaded(function (instance) {
+                                        $postContainer.masonry('appended', instance.elements);
+                                    });
+                        });
+                    } else {
+                        postCursor = false;
+                    }
                     AjaxLoader.down();
                     isLoadingPosts = false;
                 });
