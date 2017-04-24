@@ -64,6 +64,9 @@ return [
 
     'ajax_loading' => 'Elemente werden geladen ...',
 
+    'post_count' => 'Beiträge',
+    'comment_count' => 'Kommentare',
+
     'approved' => [
         '0' => 'nein',
         '1' => 'ja',

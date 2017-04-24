@@ -23,7 +23,12 @@ class MemberController extends Controller
 
     public function getDatatable()
     {
-        return \Datatables::of(Member::byActive()->get())
+        $members = Member::with(['posts','comments'])->byActive()->get()
+            ->map(function(Member $member) {
+                return $member->append(['post_count', 'comment_count']);
+            });
+
+        return \Datatables::collection($members)
             ->addColumn('avatar', function(Member $member) {
                 return '<img src="'.$member->avatar.'" class="img-responsive">';
             })

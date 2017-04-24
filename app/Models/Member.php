@@ -75,6 +75,16 @@ class Member extends Model
         return $value;
     }
 
+    public function getPostCountAttribute()
+    {
+        return $this->posts->count();
+    }
+
+    public function getCommentCountAttribute()
+    {
+        return $this->comments->count();
+    }
+
     public function inactivate()
     {
         $this->update([

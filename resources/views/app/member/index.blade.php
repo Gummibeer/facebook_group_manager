@@ -96,6 +96,19 @@
                         <input type="text" class="form-control" id="filter_age_by_picture" data-column="age_by_picture" />
                     </div>
                 </div>
+                <div class="clearfix"></div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="filter_age">{{ trans('labels.post_count') }}</label>
+                        <input type="number" class="form-control" id="filter_post_count" data-column="post_count" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="filter_age">{{ trans('labels.comment_count') }}</label>
+                        <input type="number" class="form-control" id="filter_comment_count" data-column="comment_count" />
+                    </div>
+                </div>
             </div>
         </div>
         <table class="table table-striped table-hover" id="members-table">
@@ -112,6 +125,8 @@
                 <th>{{ trans('labels.is_silhouette') }}</th>
                 <th>{{ trans('labels.is_admin') }}</th>
                 <th>{{ trans('labels.is_approved') }}</th>
+                <th>{{ trans('labels.post_count') }}</th>
+                <th>{{ trans('labels.comment_count') }}</th>
                 <th></th>
             </tr>
             </thead>
@@ -140,6 +155,8 @@
                 { data: 'is_silhouette', name: 'is_silhouette' },
                 { data: 'is_administrator', name: 'is_administrator' },
                 { data: 'is_approved', name: 'is_approved' },
+                { data: 'post_count', name: 'post_count' },
+                { data: 'comment_count', name: 'comment_count' },
                 { data: 'actions', name: 'actions', orderable: false, searchable: false }
             ],
             drawCallback: function() {
