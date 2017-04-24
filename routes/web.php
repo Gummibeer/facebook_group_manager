@@ -43,13 +43,13 @@ Route::group(['namespace' => 'App', 'middleware' => 'auth'], function() {
             ->name('app.user.update');
     });
 
-    Route::group(['prefix' => 'post'], function() {
+    Route::group(['prefix' => 'post', 'middleware' => 'can:view-post'], function() {
         Route::get('/', 'PostController@getIndex')
             ->name('app.post.index');
     });
 
     Route::group(['prefix' => 'api'], function() {
-        Route::group(['prefix' => 'post'], function() {
+        Route::group(['prefix' => 'post', 'middleware' => 'can:view-post'], function() {
             Route::get('/', 'PostController@getApiIndex')
                 ->name('api.post.index');
             Route::get('/comments/{post}', 'PostController@getApiComments')

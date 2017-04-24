@@ -37,5 +37,9 @@ class AuthServiceProvider extends ServiceProvider
         \Gate::define('manage-user', function (User $user) {
             return false;
         });
+
+        \Gate::define('view-post', function (User $user) {
+            return $user->hasMember();
+        });
     }
 }
