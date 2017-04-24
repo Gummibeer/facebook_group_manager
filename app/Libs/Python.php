@@ -24,7 +24,7 @@ class Python
     {
         $bin = $this->getPythonBin();
         $script = $this->getScriptPath($script);
-        $args = '"'.addslashes($arg).'"';
+        $args = escapeshellarg($arg);
         return implode(' ', [$bin, $script, $args]);
     }
 

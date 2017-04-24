@@ -19,6 +19,7 @@ class Post extends Model
         'from_id',
         'from_name',
         'picture',
+        'sentiment',
     ];
 
     public function from()
@@ -45,5 +46,9 @@ class Post extends Model
     public function scopeByCreatedAt(Builder $query, $modify) {
         $date = Carbon::now('UTC')->modify($modify);
         return $query->where('created_at', '>=', $date);
+    }
+
+    public function scopeWithoutSentiment(Builder $query) {
+        return $query->whereNull('sentiment');
     }
 }

@@ -58,6 +58,22 @@
             });
         }
 
+        function parseSentiment($elem) {
+            var $sentiment = $elem.find('.sentiment');
+            var sentiment = $sentiment.data('sentiment');
+            var $icon = $('<i class="icon fa"></i>');
+            if(sentiment > 0) {
+                $sentiment.addClass('text-success');
+                $icon.addClass('fa-chevron-up');
+            } else if(sentiment < 0) {
+                $sentiment.addClass('text-danger');
+                $icon.addClass('fa-chevron-down');
+            } else {
+                $icon.addClass('fa-circle-o');
+            }
+            $sentiment.append($icon).append(" "+sentiment);
+        }
+
         var $postContainer = $('#posts');
         var postUrl = $postContainer.data('url');
         var postCursor = '';
@@ -80,6 +96,7 @@
                             var $post = $(postTemplate(post));
                             parseTime($post);
                             parseTwemoji($post);
+                            parseSentiment($post);
                             $post
                                     .appendTo($postContainer)
                                     .imagesLoaded(function (instance) {

@@ -7,6 +7,7 @@ use App\Console\Commands\MemberGenderName;
 use App\Console\Commands\MemberGenderPicture;
 use App\Console\Commands\MemberLoad;
 use App\Console\Commands\PostLoad;
+use App\Console\Commands\PostSentiment;
 use App\Console\Commands\TokenRefresh;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -20,6 +21,7 @@ class Kernel extends ConsoleKernel
         TokenRefresh::class,
         PostLoad::class,
         CommentLoad::class,
+        PostSentiment::class,
     ];
 
     protected function schedule(Schedule $schedule)
@@ -39,6 +41,10 @@ class Kernel extends ConsoleKernel
             ->runInBackground()
             ->withoutOverlapping();
          $schedule->command('member:gender:name')
+             ->hourly()
+             ->runInBackground()
+             ->withoutOverlapping();
+         $schedule->command('post:sentiment')
              ->hourly()
              ->runInBackground()
              ->withoutOverlapping();
