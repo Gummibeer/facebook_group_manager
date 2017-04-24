@@ -31,6 +31,7 @@ return [
     'is_admin' => 'Admin',
     'email' => 'E-Mail',
     'facebook_id' => 'Facebook-ID',
+    'facebook_token' => 'Facebook-AccessToken',
     'is_approved' => 'Überprüft',
 
     'yes' => 'ja',
