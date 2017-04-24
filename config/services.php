@@ -18,6 +18,7 @@ return [
         'app_id' => env('FB_APP_ID'),
         'app_secret' => env('FB_APP_SECRET'),
         'group_id' => env('FB_GROUP_ID'),
+        'app_token' => env('FB_APP_TOKEN'),
     ],
 
 ];

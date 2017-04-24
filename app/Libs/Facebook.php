@@ -9,6 +9,17 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Facebook
 {
+    public function getAppClient()
+    {
+        $fb = new FB([
+            'app_id' => config('services.facebook.app_id'),
+            'app_secret' => config('services.facebook.app_secret'),
+            'default_graph_version' => 'v2.8',
+        ]);
+        $fb->setDefaultAccessToken(config('services.facebook.app_token'));
+        return $fb;
+    }
+
     public function getClient($newToken = false)
     {
         $fb = new FB([
@@ -32,12 +43,15 @@ class Facebook
         $users = User::whereHas('member', function (Builder $query) {
             return $query->byAdmin();
         })->get();
-        if($users->count() == 0) {
+        if ($users->count() == 0) {
             $users = User::byAdmin()->get();
         }
-        if($users->count() > 0) {
+        $users = $users->filter(function(User $user) {
+            return in_array('user_managed_groups', $user->facebook_token_details['scopes']->asArray());
+        });
+        if ($users->count() > 0) {
             $user = $users->random();
-            if($newToken) {
+            if ($newToken) {
                 return $this->generateToken($user);
             }
             return $user->facebook_token;

@@ -31,6 +31,14 @@
                     <div class="col-md-12">
                         <strong>{{ trans('labels.facebook_token') }}</strong>
                         <input type="text" readonly class="form-control" value="{{ $user->facebook_token }}"/>
+                        <div>
+                        @if($user->facebook_token_details['is_valid'])
+                            <i class="text-success icon fa fa-check"></i>
+                        @else
+                            <i class="text-danger icon fa fa-times"></i>
+                        @endif
+                        {{ $user->facebook_token_details['scopes'] }}
+                        </div>
                     </div>
                 </div>
             </div>
