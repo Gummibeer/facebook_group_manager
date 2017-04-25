@@ -51,4 +51,9 @@ class Post extends Model
     public function scopeWithoutSentiment(Builder $query) {
         return $query->whereNull('sentiment');
     }
+
+    public function scopeWithoutComments(Builder $query)
+    {
+        $query->doesntHave('comments');
+    }
 }

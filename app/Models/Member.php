@@ -121,4 +121,19 @@ class Member extends Model
     {
         return $query->where('is_silhouette', (int)$is);
     }
+
+    public function scopeWithoutContribution(Builder $query)
+    {
+        $query->withoutPosts()->withoutComments();
+    }
+
+    public function scopeWithoutPosts(Builder $query)
+    {
+        $query->doesntHave('posts');
+    }
+
+    public function scopeWithoutComments(Builder $query)
+    {
+        $query->doesntHave('comments');
+    }
 }

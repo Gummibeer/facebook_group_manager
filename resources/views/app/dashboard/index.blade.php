@@ -9,11 +9,17 @@
             @include('app.dashboard.widgets.members_without_avatar')
         </div>
         <div class="col-xs-12 col-md-3">
+            @include('app.dashboard.widgets.members_without_contribution')
+        </div>
+        <div class="col-xs-12 col-md-3">
             @include('app.dashboard.widgets.members_approved')
         </div>
         <div class="clearfix"></div>
         <div class="col-xs-12 col-md-3">
             @include('app.dashboard.widgets.posts_count')
+        </div>
+        <div class="col-xs-12 col-md-3">
+            @include('app.dashboard.widgets.posts_without_comments')
         </div>
         <div class="col-xs-12 col-md-3">
             @include('app.dashboard.widgets.posts_with_picture_count')

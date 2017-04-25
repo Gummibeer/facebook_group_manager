@@ -55,8 +55,10 @@ return [
 
     'members_without_avatar' => 'Mitglieder ohne Profilbild',
     'members_approved' => 'überprüfte Mitglieder',
+    'members_without_contribution' => 'Mitglieder ohne Beitrag',
 
     'posts_with_picture' => 'Beiträge mit Bild',
+    'posts_without_comments' => 'Beiträge ohne Kommentar',
 
     'comments_without_parent' => 'Hauptkommentare',
     'comments_with_parent' => 'Unterkommentare',
