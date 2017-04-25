@@ -8,6 +8,7 @@ use App\Console\Commands\MemberGenderPicture;
 use App\Console\Commands\MemberLoad;
 use App\Console\Commands\PostLoad;
 use App\Console\Commands\PostSentiment;
+use App\Console\Commands\PublishAutopost;
 use App\Console\Commands\TokenRefresh;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -22,10 +23,14 @@ class Kernel extends ConsoleKernel
         PostLoad::class,
         CommentLoad::class,
         PostSentiment::class,
+        PublishAutopost::class,
     ];
 
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('publish:autopost')
+            ->everyMinute()
+            ->runInBackground();
          $schedule->command('load:members')
              ->hourly()
              ->runInBackground()
@@ -49,6 +54,8 @@ class Kernel extends ConsoleKernel
              ->runInBackground()
              ->withoutOverlapping();
          $schedule->command('token:refresh')->daily();
+        
+        
     }
 
     protected function commands()

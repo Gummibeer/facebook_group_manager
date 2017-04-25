@@ -36,5 +36,8 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment() !== 'production') {
             $this->app->register(IdeHelperServiceProvider::class);
         }
+        if (class_exists(AutopostServiceProvider::class)) {
+            $this->app->register(AutopostServiceProvider::class);
+        }
     }
 }

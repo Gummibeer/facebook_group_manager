@@ -12,3 +12,4 @@ Homestead.yaml
 .env
 /_ide_helper.php
 /.phpstorm.meta.php
+/app/Providers/AutopostServiceProvider.php

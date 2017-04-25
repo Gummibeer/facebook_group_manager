@@ -27,15 +27,25 @@
                 </a>
             </li>
         </ul>
-        @can('manage-user')
+        @can('administration')
         <h5 class="sidebartitle">{{ trans('labels.administration') }}</h5>
         <ul class="nav nav-pills nav-stacked nav-bracket">
+            @can('manage-user')
             <li>
                 <a href="{{ route('app.user.index') }}">
                     <i class="fa fa-user-secret"></i>
                     <span>{{ trans('labels.users') }}</span>
                 </a>
             </li>
+            @endcan
+            @can('view-autopost')
+            <li>
+                <a href="{{ route('app.autopost.index') }}">
+                    <i class="fa fa-magic"></i>
+                    <span>{{ trans('labels.autoposts') }}</span>
+                </a>
+            </li>
+            @endcan
         </ul>
         @endcan
     </div>

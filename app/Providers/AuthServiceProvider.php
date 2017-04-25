@@ -30,6 +30,10 @@ class AuthServiceProvider extends ServiceProvider
             return (bool) $user->is_admin;
         });
 
+        \Gate::define('administration', function (User $user) {
+            return false;
+        });
+
         \Gate::define('manage-member', function (User $user) {
             return false;
         });
@@ -40,6 +44,10 @@ class AuthServiceProvider extends ServiceProvider
 
         \Gate::define('view-post', function (User $user) {
             return $user->hasMember();
+        });
+
+        \Gate::define('view-autopost', function (User $user) {
+            return false;
         });
     }
 }

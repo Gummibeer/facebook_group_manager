@@ -20,14 +20,14 @@ class Facebook
         return $fb;
     }
 
-    public function getClient($newToken = false)
+    public function getClient($newToken = false, array $scopes = ['user_managed_groups'])
     {
         $fb = new FB([
             'app_id' => config('services.facebook.app_id'),
             'app_secret' => config('services.facebook.app_secret'),
             'default_graph_version' => 'v2.8',
         ]);
-        $fb->setDefaultAccessToken($this->getAccessToken($newToken));
+        $fb->setDefaultAccessToken($this->getAccessToken($newToken, $scopes));
         return $fb;
     }
 
@@ -38,7 +38,7 @@ class Facebook
         return $client->getLongLivedAccessToken($token);
     }
     
-    public function getAccessToken($newToken = false)
+    public function getAccessToken($newToken = false, array $scopes = ['user_managed_groups'])
     {
         $users = User::whereHas('member', function (Builder $query) {
             return $query->byAdmin();
@@ -46,8 +46,8 @@ class Facebook
         if ($users->count() == 0) {
             $users = User::byAdmin()->get();
         }
-        $users = $users->filter(function(User $user) {
-            return in_array('user_managed_groups', $user->facebook_token_details['scopes']->asArray());
+        $users = $users->filter(function(User $user) use ($scopes) {
+            return !array_diff($scopes, $user->facebook_token_details['scopes']->asArray());
         });
         if ($users->count() > 0) {
             $user = $users->random();

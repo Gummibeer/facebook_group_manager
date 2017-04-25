@@ -13,6 +13,8 @@ return [
     'post' => 'Beitrag',
     'comments' => 'Kommentare',
     'comment' => 'Kommentar',
+    'autoposts' => 'Auto-Posts',
+    'autopost' => 'Auto-Post',
 
     'index' => 'Übersicht',
     'edit' => 'bearbeiten',
@@ -71,4 +73,10 @@ return [
         '0' => 'nein',
         '1' => 'ja',
     ],
+
+    'message' => 'Nachricht',
+    'type' => 'Typ',
+    'next_run' => 'nächster Termin',
+    'cron_expression' => 'CRON',
+    'timezone' => 'Zeitzone',
 ];

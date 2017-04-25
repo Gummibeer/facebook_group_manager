@@ -48,6 +48,11 @@ Route::group(['namespace' => 'App', 'middleware' => 'auth'], function() {
             ->name('app.post.index');
     });
 
+    Route::group(['prefix' => 'autopost', 'middleware' => 'can:view-autopost'], function() {
+        Route::get('/', 'AutopostController@getIndex')
+            ->name('app.autopost.index');
+    });
+
     Route::group(['prefix' => 'api'], function() {
         Route::group(['prefix' => 'post', 'middleware' => 'can:view-post'], function() {
             Route::get('/', 'PostController@getApiIndex')
