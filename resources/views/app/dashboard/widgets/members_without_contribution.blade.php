@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-xs-8">
                     <small class="stat-label">{{ trans('labels.members_without_contribution') }}</small>
-                    <h1>{{ \App\Models\Member::withoutContribution()->count() }}</h1>
+                    <h1>{{ \App\Models\Member::byActive()->withoutContribution()->count() }}</h1>
                 </div>
             </div>
         </div>
