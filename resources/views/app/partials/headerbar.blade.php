@@ -12,7 +12,7 @@
                     <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
                         @can('manage-member', \Auth::user()->member)
                         <li>
-                            <a href="{{ route('app.profile.edit', \Auth::user()->facebook_id) }}">
+                            <a href="{{ route('app.profile.edit') }}">
                                 <i class="fa fa-user"></i>
                                 {{ trans('labels.profile') }}
                             </a>
