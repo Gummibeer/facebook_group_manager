@@ -1,4 +1,6 @@
-<div id="activity-calendar"></div>
+<div class="panel">
+    <div id="activity-calendar"></div>
+</div>
 
 @push('scripts')
 <script type="application/javascript">
