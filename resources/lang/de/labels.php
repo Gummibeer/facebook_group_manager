@@ -15,6 +15,7 @@ return [
     'comment' => 'Kommentar',
     'autoposts' => 'Auto-Posts',
     'autopost' => 'Auto-Post',
+    'profile' => 'Profil',
 
     'index' => 'Übersicht',
     'edit' => 'bearbeiten',
@@ -35,6 +36,7 @@ return [
     'facebook_id' => 'Facebook-ID',
     'facebook_token' => 'Facebook-AccessToken',
     'is_approved' => 'Überprüft',
+    'hometown' => 'Heimatstadt',
 
     'yes' => 'ja',
     'no' => 'nein',
@@ -56,6 +58,7 @@ return [
     'members_without_avatar' => 'Mitglieder ohne Profilbild',
     'members_approved' => 'überprüfte Mitglieder',
     'members_without_contribution' => 'Mitglieder ohne Beitrag',
+    'members_hometowns' => 'Heimatstädte von Mitgliedern',
 
     'posts_with_picture' => 'Beiträge mit Bild',
     'posts_without_comments' => 'Beiträge ohne Kommentar',

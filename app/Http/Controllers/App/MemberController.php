@@ -30,7 +30,7 @@ class MemberController extends Controller
 
         return \Datatables::collection($members)
             ->addColumn('avatar', function(Member $member) {
-                return '<img src="'.$member->avatar.'" class="img-responsive">';
+                return '<img src="'.$member->avatar.'" width="48" />';
             })
             ->addColumn('actions', function(Member $member) {
                 $actions = [
@@ -137,13 +137,21 @@ class MemberController extends Controller
 
     public function postUpdate(Request $request, Member $member)
     {
-        $gender = (int) $request->get('gender', 0);
-        $age = (int) $request->get('age', 0);
-        $approved = (int) $request->get('is_approved', 0);
+        $gender = (int)$request->get('gender', 0);
+        $age = (int)$request->get('age', 0);
+        $approved = (int)$request->get('is_approved', 0);
+        $address = (string)$request->get('hometown_address', '');
+        $placeId = (string)$request->get('hometown_place_id', '');
+        $lat = (float)$request->get('hometown_lat', 0);
+        $lng = (float)$request->get('hometown_lng', 0);
         $member->update([
             'gender' => $gender,
             'age' => $age,
             'is_approved' => $approved,
+            'hometown_address' => $address,
+            'hometown_place_id' => $placeId,
+            'hometown_lat' => $lat,
+            'hometown_lng' => $lng,
         ]);
 
         return redirect()->back();

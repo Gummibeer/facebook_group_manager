@@ -49,4 +49,5 @@
         </div>
     </div>
     @include('app.dashboard.widgets.activity_calendar')
+    @include('app.dashboard.widgets.members_hometowns')
 @endsection

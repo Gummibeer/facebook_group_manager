@@ -25,6 +25,10 @@ class Member extends Model
         'is_approved',
         'age',
         'age_by_picture',
+        'hometown_address',
+        'hometown_place_id',
+        'hometown_lat',
+        'hometown_lng',
     ];
 
     public function user()
@@ -85,6 +89,14 @@ class Member extends Model
         return $this->comments->count();
     }
 
+    public function getCoordinatesAttribute()
+    {
+        return [
+            'lat' => $this->hometown_lat,
+            'lng' => $this->hometown_lng
+        ];
+    }
+
     public function inactivate()
     {
         $this->update([
@@ -135,5 +147,12 @@ class Member extends Model
     public function scopeWithoutComments(Builder $query)
     {
         $query->doesntHave('comments');
+    }
+
+    public function scopeWithHometown(Builder $query)
+    {
+        $query
+            ->where('hometown_lat', '<>', 0)
+            ->where('hometown_lng', '<>', 0);
     }
 }

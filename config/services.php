@@ -21,4 +21,8 @@ return [
         'app_token' => env('FB_APP_TOKEN'),
     ],
 
+    'google' => [
+        'api_key' => env('GOOGLE_API_KEY'),
+    ],
+
 ];

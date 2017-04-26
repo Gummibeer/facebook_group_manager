@@ -15,11 +15,19 @@ Route::group(['namespace' => 'Auth'], function() {
         ->name('auth.logout');
 });
 
-Route::group(['namespace' => 'App', 'middleware' => 'auth'], function() {
+Route::group(['namespace' => 'App', 'middleware' => ['auth','can:member']], function() {
     Route::get('dashboard', 'DashboardController@getIndex')
         ->name('app.dashboard.index');
     Route::get('activity/{day}', 'DashboardController@getActivity')
         ->name('app.dashboard.activity');
+
+
+    Route::group(['prefix' => 'profile', 'middleware' => 'can:member'], function() {
+        Route::get('/', 'ProfileController@getEdit')
+            ->name('app.profile.edit');
+        Route::post('/', 'ProfileController@postUpdate')
+            ->name('app.profile.update');
+    });
 
     Route::group(['prefix' => 'member', 'middleware' => 'can:manage-member'], function() {
         Route::get('/', 'MemberController@getIndex')

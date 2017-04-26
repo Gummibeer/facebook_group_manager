@@ -1,7 +1,10 @@
 <div class="leftpanel">
 
     <div class="logopanel">
-        <h1><span>[</span> bracket <span>]</span></h1>
+        <h1>
+            <span>FB</span>
+            {{ config('app.name') }}
+        </h1>
     </div>
 
     <div class="leftpanelinner">
