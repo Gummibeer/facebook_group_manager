@@ -155,4 +155,9 @@ class Member extends Model
             ->where('hometown_lat', '<>', 0)
             ->where('hometown_lng', '<>', 0);
     }
+
+    public function scopeWithAge(Builder $query)
+    {
+        $query->where('age', '<>', 0);
+    }
 }

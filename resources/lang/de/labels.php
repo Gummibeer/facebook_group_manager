@@ -59,6 +59,8 @@ return [
     'members_approved' => 'überprüfte Mitglieder',
     'members_without_contribution' => 'Mitglieder ohne Beitrag',
     'members_hometowns' => 'Heimatstädte von Mitgliedern',
+    'members_with_hometown' => 'Mitglieder mit Heimatstadt',
+    'members_average_age' => 'Durchschnittsalter',
 
     'posts_with_picture' => 'Beiträge mit Bild',
     'posts_without_comments' => 'Beiträge ohne Kommentar',
