@@ -16,6 +16,7 @@
             var map = new google.maps.Map(document.getElementById('hometown-map'), {
                 zoom: 4,
                 maxZoom: 14,
+                scrollwheel: false,
                 center: {
                     lat: 0,
                     lng: 0
