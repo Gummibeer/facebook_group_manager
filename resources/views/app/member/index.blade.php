@@ -83,7 +83,6 @@
                         </select>
                     </div>
                 </div>
-                <div class="clearfix"></div>
                 <div class="col-md-2">
                     <div class="form-group">
                         <label for="filter_age">{{ trans('labels.age') }}</label>
@@ -94,6 +93,12 @@
                     <div class="form-group">
                         <label for="filter_age_by_picture">{{ trans('labels.age_by_picture') }}</label>
                         <input type="text" class="form-control" id="filter_age_by_picture" data-column="age_by_picture" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="filter_age_by_picture">{{ trans('labels.hometown') }}</label>
+                        <input type="text" class="form-control" id="filter_hometown_address" data-column="hometown_address" />
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -122,6 +127,7 @@
                 <th>{{ trans('labels.gender_by_picture') }}</th>
                 <th>{{ trans('labels.age') }}</th>
                 <th>{{ trans('labels.age_by_picture') }}</th>
+                <th>{{ trans('labels.hometown') }}</th>
                 <th>{{ trans('labels.is_silhouette') }}</th>
                 <th>{{ trans('labels.is_admin') }}</th>
                 <th>{{ trans('labels.is_approved') }}</th>
@@ -152,6 +158,7 @@
                 { data: 'gender_by_picture', name: 'gender_by_picture' },
                 { data: 'age', name: 'age' },
                 { data: 'age_by_picture', name: 'age_by_picture' },
+                { data: 'hometown_address', name: 'hometown_address' },
                 { data: 'is_silhouette', name: 'is_silhouette' },
                 { data: 'is_administrator', name: 'is_administrator' },
                 { data: 'is_approved', name: 'is_approved' },
