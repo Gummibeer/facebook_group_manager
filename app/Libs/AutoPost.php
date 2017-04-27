@@ -82,13 +82,13 @@ class AutoPost
     {
         if($this->isPhoto()) {
             return array_filter([
-                'message' => $this->message,
+                'message' => $this->getParsedMessage(),
                 'url' => $this->url,
                 'source' => $this->source,
             ]);
         }
         return array_filter([
-            'message' => $this->message,
+            'message' => $this->getParsedMessage(),
             'link' => $this->link,
         ]);
     }
@@ -106,6 +106,22 @@ class AutoPost
             $this->isDue = CronExpression::factory($this->expression)->isDue($date->toDateTimeString());
         }
         return $this->isDue;
+    }
+    
+    public function getParsedMessage()
+    {
+        $now = Carbon::now($this->timezone);
+        $replacers = [
+            '{weekday}' => trans('date.weekdays.'.$now->dayOfWeek),
+        ];
+        
+        $message = $this->message;
+        $message = str_replace(array_keys($replacers), array_values($replacers), $message);
+        $message = preg_replace_callback('/{emoji:([\d]+)}/', function($match) {
+            return html_entity_decode('&#'.$match[1].';');
+        }, $message);
+
+        return $message;
     }
 
     public function getMessage()
