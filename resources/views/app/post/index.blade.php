@@ -16,7 +16,6 @@
 @endsection
 
 @push('scripts')
-<script src="//twemoji.maxcdn.com/2/twemoji.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
 <script src="//unpkg.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
 <script type="application/javascript">
@@ -35,33 +34,6 @@
     };
 
     jQuery(window).on('load', function () {
-        function parseTwemoji($elem) {
-            var text = $elem.html();
-            var emoticons = {
-                ':D': '\uD83D\uDE04',
-                ':*': '\uD83D\uDE18',
-                '<3': '\u2764',
-                '&lt;3': '\u2764',
-                ';)': '\uD83D\uDE09',
-                ':)': '\uD83D\uDE0A',
-                ':-)': '\uD83D\uDE0A',
-                ':P': '\uD83D\uDE1B'
-            };
-            $.each(emoticons, function(key, value) {
-                key = key.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-                text = text.replace(new RegExp(key, 'g'), value);
-            });
-            var parsed = twemoji.parse(text, {
-                folder: 'svg',
-                ext: '.svg'
-            });
-            if (parsed.trim() == '') {
-                $elem.html(text);
-            } else {
-                $elem.html(parsed);
-            }
-        }
-
         function parseTime($elem) {
             var $times = $elem.find('time').not('.parsed');
             $times.each(function () {
@@ -86,15 +58,6 @@
                 $icon.addClass('fa-circle-o');
             }
             $sentiment.append($icon).append(" "+sentiment);
-        }
-
-        function parseHashtag($elem)
-        {
-            var text = $elem.html();
-            var parsed = text.replace(/#([a-z\d-]+)/ig, function replacer(match, p1, offset, string) {
-                return "<a href='https://www.facebook.com/hashtag/"+p1.toLowerCase()+"' target='_blank'>#"+p1+"</a>";
-            });
-            $elem.html(parsed);
         }
 
         var $postContainer = $('#posts');

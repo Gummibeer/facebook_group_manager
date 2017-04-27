@@ -19,7 +19,7 @@
             <tbody>
             @foreach($autoposts as $autopost)
             <tr>
-                <td>{!! nl2br($autopost->getMessage()) !!}</td>
+                <td class="message">{!! nl2br($autopost->getParsedMessage()) !!}</td>
                 <td>
                     @if($autopost->isPhoto())
                         <i class="icon fa fa-picture-o"></i>
@@ -37,3 +37,15 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+<script type="application/javascript">
+    $(window).on('load', function() {
+        $('.message').each(function() {
+            var $this = $(this);
+            parseTwemoji($this);
+            parseHashtag($this);
+        });
+    });
+</script>
+@endpush

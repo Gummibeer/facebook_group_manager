@@ -26,6 +26,8 @@
         <i class="fa fa-spinner fa-spin"></i>
         {{ trans('labels.ajax_loading') }}
     </div>
+
+    <script src="//twemoji.maxcdn.com/2/twemoji.min.js"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery-migrate-1.2.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
