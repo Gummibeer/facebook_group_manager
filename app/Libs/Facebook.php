@@ -4,6 +4,7 @@ namespace App\Libs;
 use App\Models\User;
 use Carbon\Carbon;
 use Facebook\Authentication\AccessToken;
+use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Facebook as FB;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -61,12 +62,16 @@ class Facebook
 
     public function refreshLongToken(User $user)
     {
-        $longToken = new AccessToken($user->facebook_token);
-        $expires = new Carbon($longToken->getExpiresAt());
-        if($expires->diffInDays() < 7) {
-            $user->update([
-                'facebook_token' => $this->generateToken($user),
-            ]);
+        try {
+            $longToken = new AccessToken($user->facebook_token);
+            $expires = new Carbon($longToken->getExpiresAt());
+            if ($expires->diffInDays() <= 14) {
+                $user->update([
+                    'facebook_token' => $this->generateToken($user),
+                ]);
+            }
+        } catch(FacebookResponseException $ex) {
+            \Log::error($ex);
         }
     }
 
