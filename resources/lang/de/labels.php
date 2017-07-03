@@ -16,6 +16,7 @@ return [
     'autoposts' => 'Auto-Posts',
     'autopost' => 'Auto-Post',
     'profile' => 'Profil',
+    'logs' => 'Logs',
 
     'index' => 'Übersicht',
     'edit' => 'bearbeiten',

@@ -48,7 +48,11 @@ class Facebook
             $users = User::byAdmin()->get();
         }
         $users = $users->filter(function(User $user) use ($scopes) {
-            return !array_diff($scopes, $user->facebook_token_details['scopes']->asArray());
+            return (
+                !array_diff($scopes, $user->facebook_token_details['scopes']->asArray())
+                &&
+                $user->facebook_token_details['is_valid']
+            );
         });
         if ($users->count() > 0) {
             $user = $users->random();
@@ -57,7 +61,7 @@ class Facebook
             }
             return $user->facebook_token;
         }
-        return '';
+        throw new \RuntimeException('There is no user with a valid access-token.');
     }
 
     public function refreshLongToken(User $user)

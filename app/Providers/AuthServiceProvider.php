@@ -38,7 +38,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         \Gate::define('administration', function (User $user) {
-            return false;
+            return $user->is_admin;
         });
 
         \Gate::define('manage-member', function (User $user, Member $member = null) {
@@ -57,6 +57,10 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         \Gate::define('view-autopost', function (User $user) {
+            return false;
+        });
+
+        \Gate::define('view-logs', function (User $user) {
             return false;
         });
     }

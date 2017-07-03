@@ -39,8 +39,9 @@ return [
             'prefix'     => 'log-viewer',
 
             'middleware' => [
+                'web',
                 'auth',
-                'can:administration',
+                'can:view-logs',
             ],
         ],
     ],

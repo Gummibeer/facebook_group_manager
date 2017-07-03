@@ -49,6 +49,14 @@
                 </a>
             </li>
             @endcan
+            @can('view-logs')
+            <li>
+                <a href="{{ route('log-viewer::dashboard') }}">
+                    <i class="fa fa-archive"></i>
+                    <span>{{ trans('labels.logs') }}</span>
+                </a>
+            </li>
+            @endcan
         </ul>
         @endcan
     </div>
