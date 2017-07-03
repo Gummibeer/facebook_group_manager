@@ -4,6 +4,7 @@ namespace App\Libs;
 use App\Models\User;
 use Carbon\Carbon;
 use Facebook\Authentication\AccessToken;
+use Facebook\Exceptions\FacebookAuthenticationException;
 use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Facebook as FB;
 use Illuminate\Database\Eloquent\Builder;
@@ -61,7 +62,8 @@ class Facebook
             }
             return $user->facebook_token;
         }
-        throw new \RuntimeException('There is no user with a valid access-token.');
+        throw new FacebookAuthenticationException('There is no user with a valid access-token.');
+
     }
 
     public function refreshLongToken(User $user)

@@ -3,8 +3,10 @@
 namespace App\Exceptions;
 
 use Exception;
+use Facebook\Exceptions\FacebookSDKException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Psr\Log\LoggerInterface;
 
 class Handler extends ExceptionHandler
 {
@@ -22,17 +24,25 @@ class Handler extends ExceptionHandler
         \Illuminate\Validation\ValidationException::class,
     ];
 
-    /**
-     * Report or log an exception.
-     *
-     * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
-     *
-     * @param  \Exception  $exception
-     * @return void
-     */
-    public function report(Exception $exception)
+    public function report(Exception $e)
     {
-        parent::report($exception);
+        if ($this->shouldntReport($e)) {
+            return;
+        }
+
+        try {
+            $logger = $this->container->make(LoggerInterface::class);
+            if(!$logger instanceof LoggerInterface) {
+                throw new \RuntimeException('No \Psr\Log\LoggerInterface was returned');
+            }
+        } catch (Exception $ex) {
+            throw $e; // throw the original exception
+        }
+
+        if($e instanceof FacebookSDKException) {
+            $logger->critical($e);
+        }
+        $logger->error($e);
     }
 
     /**
