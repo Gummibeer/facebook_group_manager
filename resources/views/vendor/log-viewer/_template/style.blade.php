@@ -83,15 +83,23 @@
     .table-condensed > thead > tr > td.stack {
         padding: 0;
         border-top: none;
+        background-color: #F6F6F6;
+        border-top: 1px solid #D1D1D1;
+        max-width: 0;
+        overflow-x: auto;
+    }
+
+    .table-condensed > tbody > tr > td > p {
+        margin: 0;
     }
 
     .stack-content {
         padding: 8px;
-        background-color: #F6F6F6;
-        border-top: 1px solid #D1D1D1;
         color: #AE0E0E;
-        font-family: consolas,sans-serif;
+        font-family: consolas, Menlo, Courier, monospace;
         font-size: 12px;
+        font-weight: 400;
+        white-space: pre-line;
     }
 
     .info-box.level {
@@ -154,25 +162,25 @@
     .info-box.level-empty {
         opacity: .6;
         -webkit-filter: grayscale(1);
-           -moz-filter: grayscale(1);
-            -ms-filter: grayscale(1);
-                filter: grayscale(1);
+        -moz-filter: grayscale(1);
+        -ms-filter: grayscale(1);
+        filter: grayscale(1);
         -webkit-transition: all 0.2s ease-in-out;
-           -moz-transition: all 0.2s ease-in-out;
-             -o-transition: all 0.2s ease-in-out;
-                transition: all 0.2s ease-in-out;
+        -moz-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
         -webkit-transition-property: -webkit-filter, opacity;
-           -moz-transition-property: -moz-filter, opacity;
-             -o-transition-property: filter, opacity;
-                transition-property: -webkit-filter, -moz-filter, -o-filter, filter, opacity;
+        -moz-transition-property: -moz-filter, opacity;
+        -o-transition-property: filter, opacity;
+        transition-property: -webkit-filter, -moz-filter, -o-filter, filter, opacity;
     }
 
     .info-box.level-empty:hover {
         opacity: 1;
         -webkit-filter: grayscale(0);
-           -moz-filter: grayscale(0);
-            -ms-filter: grayscale(0);
-                filter: grayscale(0);
+        -moz-filter: grayscale(0);
+        -ms-filter: grayscale(0);
+        filter: grayscale(0);
     }
 
     .level {
