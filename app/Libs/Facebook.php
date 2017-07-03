@@ -77,7 +77,7 @@ class Facebook
                 ]);
             }
         } catch(FacebookResponseException $ex) {
-            \Log::error($ex);
+            \Log::critical($ex);
         }
     }
 

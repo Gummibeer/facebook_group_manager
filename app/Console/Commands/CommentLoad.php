@@ -7,6 +7,7 @@ use App\Libs\Facebook;
 use App\Models\Post;
 use App\Models\Comment;
 use App\Console\Command;
+use Facebook\Exceptions\FacebookSDKException;
 
 class CommentLoad extends Command
 {
@@ -52,6 +53,9 @@ class CommentLoad extends Command
                 $edge = $fb->next($edge);
             } while (!is_null($edge));
             $this->info('scraped ' . $comments->count() . ' comments data for ' . implode(':', array_filter([$postId, $parentId])));
+        } catch (FacebookSDKException $ex) {
+            \Log::critical($ex);
+            $this->line($ex, 'error');
         } catch (\Exception $ex) {
             $this->error($ex);
         }
