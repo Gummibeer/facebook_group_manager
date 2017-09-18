@@ -18,7 +18,11 @@ class Facebook
             'app_secret' => config('services.facebook.app_secret'),
             'default_graph_version' => 'v2.8',
         ]);
-        $fb->setDefaultAccessToken(config('services.facebook.app_token'));
+        try {
+            $fb->setDefaultAccessToken(config('services.facebook.app_token'));
+        } catch(FacebookAuthenticationException $ex) {
+            \Log::error($ex);
+        }
         return $fb;
     }
 
@@ -29,7 +33,11 @@ class Facebook
             'app_secret' => config('services.facebook.app_secret'),
             'default_graph_version' => 'v2.8',
         ]);
-        $fb->setDefaultAccessToken($this->getAccessToken($newToken, $scopes));
+        try {
+            $fb->setDefaultAccessToken($this->getAccessToken($newToken, $scopes));
+        } catch(FacebookAuthenticationException $ex) {
+            \Log::error($ex);
+        }
         return $fb;
     }
 
